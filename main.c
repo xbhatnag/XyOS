@@ -107,20 +107,16 @@ void GPIO_set(int pin, int level) {
   }
 }
 
-int main() {
-  // Setup - Traffic Lights
+void TrafficLight_setup() {
+  // Set pin 9, 10, and 11 to output mode
   GPIO_mode(9,GPIO_MODE_OUTPUT);
   GPIO_mode(10, GPIO_MODE_OUTPUT);
   GPIO_mode(11, GPIO_MODE_OUTPUT);
-  
-  // Turn Red ON
-  GPIO_set(9,GPIO_LEV_HIGH);
+}
 
+void UART_setup() {
   // Enable TX on pin 14 of GPIO
   GPIO_mode(14, GPIO_MODE_ALT5);
-
-  // Turn Amber ON
-  GPIO_set(10, GPIO_LEV_HIGH);
 
   // Enable UART
   set(AUX_STATE,1);
@@ -139,7 +135,7 @@ int main() {
   // Set RTS line to low
   set(AUX_MU_MCR_REG, 0x0);
 
-  // Different - Clear the FIFO
+  // Clear the FIFO
   set(AUX_MU_IIR_REG, 0x7);
 
   // UART is oversampled 8x
@@ -151,19 +147,55 @@ int main() {
 
   // Enable the UART transmitter. We should be good to go at this point.
   set(AUX_MU_CNTL_REG,2);
+}
+
+void UART_flush() {
+  // Busy wait until FIFO is empty
+  while(1) {
+	if (get(AUX_MU_LSR_REG)&0x20) break;
+  }
+}
+
+void UART_output(char letter) {
+  UART_flush();
+  set(AUX_MU_IO_REG, letter);
+}
+
+void print(char* source) {
+  char* cur = source;
+  while(*cur) {
+  	UART_output(*cur++);
+  }
+}
+
+void clrscr() {
+  print("\033c"); // ANSI escape char for Ctrl + L
+}
+
+int main() {
+  // Setup Traffic Light
+  TrafficLight_setup();
+
+  // Turn Red ON
+  GPIO_set(9,GPIO_LEV_HIGH);
+
+  // Turn Amber ON
+  GPIO_set(10, GPIO_LEV_HIGH);
+ 
+  // Setup UART
+  UART_setup();
+  
+  // Clear the screen
+  clrscr();
+
+  // Start sending data
+  print("-> Hello World!\r\nWaiting on input : ");
 
   // Turn Green ON
   GPIO_set(11, GPIO_LEV_HIGH);
-  
-  // Start sending data
-  int count =0;
-  while(1){
-  	while(1){
-		if(get(AUX_MU_LSR_REG)&0x20) break;
-	}
-	set(AUX_MU_IO_REG,0x30+(count++&7));
-  }
 
+  // Infinite loop on the CPU.
+  // Otherwise we reach the end of the instruction set.
   while(1) {
   }
   return 0;
