@@ -46,11 +46,6 @@ enum {
   AUX_MU_BAUD = AUX_BASE + 0x68
 };
 
-enum {
-  UART_STATE_ENABLE = 0,
-  UART_STATE_DISABLE = 1,
-};
-
 void set(int addr,int value) {
   *(volatile uint32_t*)addr = value;
 }
@@ -121,37 +116,54 @@ int main() {
   // Turn Red ON
   GPIO_set(9,GPIO_LEV_HIGH);
 
-  // Enable TX - Serial
-  //GPIO_mode(14, GPIO_MODE_ALT5);
+  // Enable TX on pin 14 of GPIO
+  GPIO_mode(14, GPIO_MODE_ALT5);
 
   // Turn Amber ON
   GPIO_set(10, GPIO_LEV_HIGH);
 
+  // Enable UART
+  set(AUX_STATE,1);
+
   // Disable interrupts for RX and TX.
   // Disable access to the MS 8 bits of baud rate.
-  //set(AUX_MU_IER_REG, 0x0);
+  set(AUX_MU_IER_REG, 0);
 
-  // Different - Enable the UART transmitter
-  //set(AUX_MU_CNTL_REG, 0x2);
+  // Disable the UART transmitter + receiver
+  // This is probably to prevent data flow while changing settings.
+  set(AUX_MU_CNTL_REG, 0);
 
   // Enable 8-bit mode on UART
-  //set(AUX_MU_LCR_REG, 0x3);
+  set(AUX_MU_LCR_REG, 0x3);
 
   // Set RTS line to low
-  //set(AUX_MU_MCR_REG, 0x0);
+  set(AUX_MU_MCR_REG, 0x0);
 
   // Different - Clear the FIFO
-  //set(AUX_MU_IIR_REG, 0x7);
+  set(AUX_MU_IIR_REG, 0x7);
 
   // UART is oversampled 8x
   // Baudrate = (System Clock Speed/(8*(Baud + 1))
   // We want Baudrate = 115200
   // We know System Clock Speed = 250,000,000
-  // Baud = 270
-  //set(AUX_MU_BAUD, 270);
+  // From the formula, we get Baud = 270
+  set(AUX_MU_BAUD, 270);
+
+  // Enable the UART transmitter. We should be good to go at this point.
+  set(AUX_MU_CNTL_REG,2);
 
   // Turn Green ON
   GPIO_set(11, GPIO_LEV_HIGH);
+  
+  // Start sending data
+  int count =0;
+  while(1){
+  	while(1){
+		if(get(AUX_MU_LSR_REG)&0x20) break;
+	}
+	set(AUX_MU_IO_REG,0x30+(count++&7));
+  }
+
   while(1) {
   }
   return 0;
