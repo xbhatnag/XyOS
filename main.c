@@ -115,8 +115,11 @@ void TrafficLight_setup() {
 }
 
 void UART_setup() {
-  // Enable TX on pin 14 of GPIO
+  // Enable TXD1 on pin 14 of GPIO
   GPIO_mode(14, GPIO_MODE_ALT5);
+
+  // Enable RXD1 on pin 15 of GPIO
+  GPIO_mode(15, GPIO_MODE_ALT5);
 
   // Enable UART
   set(AUX_STATE,1);
@@ -145,8 +148,12 @@ void UART_setup() {
   // From the formula, we get Baud = 270
   set(AUX_MU_BAUD, 270);
 
-  // Enable the UART transmitter. We should be good to go at this point.
-  set(AUX_MU_CNTL_REG,2);
+  // Enable the UART transmitter + receiver. We should be good to go at this point.
+  set(AUX_MU_CNTL_REG,3);
+
+  // Enable interrupts for RX
+  // Keep interrupts disabled for TX and disable access to the MS 8 bits of baud rate.
+  //set(AUX_MU_IER_REG, 1)
 }
 
 void UART_flush() {
@@ -172,6 +179,31 @@ void clrscr() {
   print("\033c"); // ANSI escape char for Ctrl + L
 }
 
+void wait_on_any_input() {
+  while(!(get(AUX_MU_STAT_REG)&1)) {}
+}
+
+char get_char_from_input() {
+  return get(AUX_MU_IO_REG);
+}
+
+void typewriter() {
+  // Pipe serial input -> serial output
+  while(1) {
+  	wait_on_any_input();
+	GPIO_set(10, GPIO_LEV_HIGH);
+	char input = get_char_from_input();
+	if (input == '\r') {
+		// Some confusion b/w the DOS and UNIX standard
+		// for newlines.
+		print("\r\n");
+		GPIO_set(11, GPIO_LEV_HIGH);
+	} else {
+		UART_output(input);
+	}
+  }
+}
+
 int main() {
   // Setup Traffic Light
   TrafficLight_setup();
@@ -179,9 +211,6 @@ int main() {
   // Turn Red ON
   GPIO_set(9,GPIO_LEV_HIGH);
 
-  // Turn Amber ON
-  GPIO_set(10, GPIO_LEV_HIGH);
- 
   // Setup UART
   UART_setup();
   
@@ -191,8 +220,8 @@ int main() {
   // Start sending data
   print("-> Hello World!\r\nWaiting on input : ");
 
-  // Turn Green ON
-  GPIO_set(11, GPIO_LEV_HIGH);
+  // Behave like a typewriter.
+  typewriter();
 
   // Infinite loop on the CPU.
   // Otherwise we reach the end of the instruction set.
