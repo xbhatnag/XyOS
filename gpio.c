@@ -1,8 +1,8 @@
 #include "gpio.h"
 
-void GPIO_mode(int pin, int mode) {
+void gpio_mode(int pin, int mode) {
+  volatile unsigned* addr;
   int current_mode = 0;
-  int addr = 0;
   int offset = 0;
   if (pin >= 0 && pin <= 9) {
   	addr = GPIO_SEL0;
@@ -23,32 +23,32 @@ void GPIO_mode(int pin, int mode) {
   	addr = GPIO_SEL5;
 	offset = 50;
   }
-  current_mode = get(addr);
+  current_mode = *addr;
   current_mode |= mode << ((pin-offset)*3);
-  set(addr, current_mode);
+  *addr = current_mode;
 }
 
-void GPIO_start_set(int pin) {
+void gpio_start_set(int pin) {
   if (pin >= 0 && pin <= 31) {
-  	set(GPIO_SET0, GPIO_SET << pin);
+  	*GPIO_SET0 = 1 << pin;
   } else {
-  	set(GPIO_SET1, GPIO_SET << (pin-32));
+  	*GPIO_SET1 = 1 << (pin-32);
   }
 }
 
-void GPIO_clear(int pin) {
+void gpio_clear(int pin) {
   if (pin >= 0 && pin <= 31) {
-  	set(GPIO_CLR0, GPIO_CLR << pin);
+  	*GPIO_CLR0 = 1 << pin;
   } else {
-  	set(GPIO_CLR1, GPIO_CLR << (pin-32));
+  	*GPIO_CLR1 = 1 << (pin-32);
   }
 }
 
-void GPIO_set(int pin, int level) {
-  GPIO_start_set(pin);
+void gpio_set(int pin, int level) {
+  gpio_start_set(pin);
   if (pin >= 0 && pin <= 31) {
-  	set(GPIO_LEV0, level << pin);
+  	*GPIO_LEV0 = level << pin;
   } else {
-  	set(GPIO_LEV1, level << (pin-32));
+  	*GPIO_LEV1 = level << (pin-32);
   }
 }
