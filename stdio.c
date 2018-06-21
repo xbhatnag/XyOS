@@ -10,14 +10,14 @@ void printf(char* s){
 
 void println(char*s){
     printf(s);
-    printf("\r\n");
+    newline();
 }
 
 void putc(char c){
    if (c == '\r') {
    	// Something odd going on with
 	// newlines. Look into this...
-   	printf("\r\n");
+	newline();
 	return;
    }
    uart_output(c);
@@ -26,4 +26,8 @@ void putc(char c){
 char getc(){
    char c = uart_input();
    return c;
+}
+
+void newline(){
+   printf("\n\r");
 }
