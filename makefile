@@ -3,7 +3,7 @@ GCC		= $(TOOLCHAIN)-gcc
 OBJCOPY		= $(TOOLCHAIN)-objcopy
 GDB		= $(TOOLCHAIN)-gdb
 QEMU		= qemu-system-aarch64
-C_FLAGS		= -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles
+C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles
 C_FILES		= $(wildcard *.c)
 C_OBJS		= $(C_FILES:.c=.o)
 ASM_FLAGS	= 
