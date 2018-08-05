@@ -1,6 +1,6 @@
 # XyOS
 ## On Pause
-Waiting to take course in Concurrency & Parallel Programming (CS 343)
+Waiting to take course in Concurrency & Parallel Programming (CS 343).
 Hope to learn more about threads and coroutines to apply here.
 
 ## Goals
