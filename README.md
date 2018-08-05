@@ -1,4 +1,8 @@
 # XyOS
+## On Pause
+Waiting to take course in Concurrency & Parallel Programming (CS 343)
+Hope to learn more about threads and coroutines to apply here.
+
 ## Goals
 1. Build a 64Bit Kernel for the Raspberry Pi 3B. Code bare metal, directly onto the CPU.
 2. Get access to basic peripherals on the Raspberry Pi - GPIO, UART, Timers.
