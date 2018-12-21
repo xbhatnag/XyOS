@@ -1,0 +1,5 @@
+#!/bin/bash
+./upload
+if [ $? -eq 0 ]; then
+	./screen
+fi
