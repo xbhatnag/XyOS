@@ -1,10 +1,18 @@
 #ifndef _STDIO_H_
 #define _STDIO_H_
 
-void printf(char* s);
-void println(char* s);
+#include <stdint.h>
+
 void putc(char c);
-char getc();
+void puti(unsigned num);
+void putb(uint64_t num, int end, int start);
+void pretty_putb_32(uint64_t num);
+
+
+void print(char* s);
+void println(char* s);
 void newline();
+
+char getc();
 
 #endif
