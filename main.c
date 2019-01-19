@@ -66,15 +66,28 @@ void force_exception(){
 	println("Return from exception");
 }
 
-void do_countdown() {
-	println("Starting countdown");
-	system_timer_chan_1_countdown(10000);
+void start_clock() {
+	println("Starting clock");
+	system_timer_chan_1_countdown(1000);
 }
 
 void hypervisor_transfer() {
 	println("Transferring to hypervisor");
 	asm("hvc #69");
 	println("Returned from hypervisor");
+}
+
+void typewriter_mode() {
+	println("Typewriter Mode On");
+	while(1) {
+		char input = getc();
+		if (input == 3) {
+			newline();
+			return;
+		} else {
+			putc(input);
+		}
+	}
 }
 
 void menu(char c){
@@ -97,14 +110,18 @@ void menu(char c){
 			hypervisor_transfer();
 			break;
 		}
+		case 't': {
+			typewriter_mode();
+			break;
+		}
 		case 'y': {
 			println("Wait says the yellow one,");
 			println("Blinking in between");
 			gpio_set(10, GPIO_LEVEL_HIGH);
 			break;
 		}
-		case 't': {
-			do_countdown();
+		case 'c': {
+			start_clock();
 			break;
 		}
 		default: {

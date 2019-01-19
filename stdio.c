@@ -29,13 +29,13 @@ void newline(){
 }
 
 void puti_64(uint64_t num) {
-	// At most 20 digits
-	char c[20];
+	// At most 10 digits
+	char c[10];
 	c[0] = '0';
 
 	int i = 0;
 	while (num != 0) {
-		c[i] = (num % 10) + 48;
+		c[i] = (num % 10) + '0';
 		i+=1;
 		num = num / 10;
 	}
@@ -52,7 +52,7 @@ void puti_32(uint32_t num) {
 
 	int i = 0;
 	while (num != 0) {
-		c[i] = (num % 10) + 48;
+		c[i] = (num % 10) + '0';
 		i+=1;
 		num = num / 10;
 	}
