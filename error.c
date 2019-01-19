@@ -3,9 +3,9 @@
 
 // Unrecoverable error has occurred
 void error(char* msg) {
-	println("########## ERROR ###########");
+	println("########### ERROR ###########");
 	println(msg);
-	println("############################");
+	println("#############################");
 	while(1) {}
 }
 

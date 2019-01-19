@@ -28,7 +28,7 @@ void newline(){
    uart_output('\r');
 }
 
-void puti(unsigned num) {
+void puti(uint32_t num) {
 	// At most 10 digits
 	char c[10];
 	c[0] = '0';

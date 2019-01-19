@@ -2,8 +2,10 @@
 #include "error.h"
 #include "uart.h"
 #include "stdio.h"
-#include "timer.h"
+#include "arm_timer.h"
+#include "system_timer.h"
 #include "interrupts.h"
+#include <stdint.h>
 
 // Implemented in interrupts_asm.S
 extern void enable_irq();
@@ -37,11 +39,14 @@ void el1_main() {
 	println("┣━ Enabling IRQ");
 	enable_irq();
 
-	println("┣━ Enabling Timer");
-	timer_enable();
+	println("┣━ Enabling ARM Timer");
+	arm_timer_enable();
 
-	println("┗━ Enabling Timer Interrupts");
-	ic_enable_timer_irq();
+	println("┣━ Enabling ARM Timer IRQ");
+	ic_enable_arm_timer_irq();
+
+	println("┗━ Enabling System Timer IRQ");
+	ic_enable_system_timer_chan_1_irq();
 
 	newline();
 
@@ -57,43 +62,19 @@ void el1_main() {
 
 void force_exception(){
 	println("Forcing unaligned data access...");
-	*((volatile unsigned*)0x3);
+	*((volatile uint32_t*)0x3);
 	println("Return from exception");
 }
 
 void do_countdown() {
-	if (timer_is_enabled()) {
-		println("Timer is enabled");
-	} else {
-		println("Timer is not correctly enabled");
-	}
 	println("Starting countdown");
-	timer_countdown(2000);
-	while(timer_get_value()) {}
-	for(unsigned i = 0; i < 10000; i++) { asm volatile ("nop");}
-	if (timer_interrupted()) {
-		println("Timer sent interrupt");
-	} else {
-		println("Timer did not send interrupt");
-	}
-	if (ic_basic_irq_pending()) {
-		println("IC received timer interrupt");	
-	} else {
-		println("IC did not receive timer interrupt");
-	}
+	system_timer_chan_1_countdown(10000);
 }
 
 void hypervisor_transfer() {
 	println("Transferring to hypervisor");
 	asm("hvc #69");
 	println("Returned from hypervisor");
-}
-
-void status_interrupts() {
-	uint64_t isr = interrupt_status_1();
-	print("Interrupt Status (Bits) : ");
-	pretty_putb_32(isr);
-	newline();
 }
 
 void menu(char c){
@@ -116,12 +97,6 @@ void menu(char c){
 			hypervisor_transfer();
 			break;
 		}
-
-		case 's': {
-			status_interrupts();
-			break;
-		}
-
 		case 'y': {
 			println("Wait says the yellow one,");
 			println("Blinking in between");

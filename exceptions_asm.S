@@ -2,10 +2,14 @@
 
 .global exception_level
 exception_level:
-	// Jump to right exception handler
 	mrs x0, CurrentEL
 	and x0, x0, #12		// Only bits 3 and 2 are relevant
 	lsr x0, x0, #2		// Shift right by 2
+	ret
+
+.global interrupt_status_1
+interrupt_status_1:
+	mrs x0, ISR_EL1
 	ret
 
 .global exception_syndrome_2
@@ -38,15 +42,9 @@ saved_program_state_1:
 	mrs x0, SPSR_EL1
 	ret
 
-.global increment_elr_1
-increment_elr_1:
-	mrs x0, ELR_EL1
-	add x0, x0, #4
-	msr ELR_EL1, x0
-	ret
-
 .global exception_handler
 exception_handler:
+	// Save all registers
 	sub sp, sp, #16
 	stp x0,x1,[sp]
 
