@@ -9,7 +9,7 @@ void print(char* s){
     }
 }
 
-void println(char*s){
+void println(char* s){
     print(s);
     newline();
 }
@@ -28,7 +28,24 @@ void newline(){
    uart_output('\r');
 }
 
-void puti(uint32_t num) {
+void puti_64(uint64_t num) {
+	// At most 20 digits
+	char c[20];
+	c[0] = '0';
+
+	int i = 0;
+	while (num != 0) {
+		c[i] = (num % 10) + 48;
+		i+=1;
+		num = num / 10;
+	}
+
+	for (int j = i; j >= 0; j--) {
+		uart_output(c[j]);
+	}
+}
+
+void puti_32(uint32_t num) {
 	// At most 10 digits
 	char c[10];
 	c[0] = '0';
@@ -45,7 +62,7 @@ void puti(uint32_t num) {
 	}
 }
 
-void putb(uint64_t num, int end, int start) {
+void putb_64(uint64_t num, int end, int start) {
 	for (int i = end; i >= start; i--) {
 		int bit = ((num >> i) & 0x1);
 		if (bit) {
@@ -56,21 +73,49 @@ void putb(uint64_t num, int end, int start) {
 	}
 }
 
-void pretty_putb_32(uint64_t val) { 
-	putb(val, 31, 28);
-	putc(' ');
-	putb(val, 27, 24);
-	putc(' ');
-	putb(val, 23, 20);
-	putc(' ');
-	putb(val, 19, 16);
-	putc(' ');
-	putb(val, 15, 12);
-	putc(' ');
-	putb(val, 11, 8);
-	putc(' ');
-	putb(val, 7, 4);
-	putc(' ');
-	putb(val, 3, 0);
+void putb_32(uint32_t num, int end, int start) {
+	for (int i = end; i >= start; i--) {
+		int bit = ((num >> i) & 0x1);
+		if (bit) {
+			putc('1');
+		} else {
+			putc('0');
+		}
+	}
 }
 
+void pretty_putb_64(uint64_t val) { 
+	putb_64(val, 31, 28);
+	putc(' ');
+	putb_64(val, 27, 24);
+	putc(' ');
+	putb_64(val, 23, 20);
+	putc(' ');
+	putb_64(val, 19, 16);
+	putc(' ');
+	putb_64(val, 15, 12);
+	putc(' ');
+	putb_64(val, 11, 8);
+	putc(' ');
+	putb_64(val, 7, 4);
+	putc(' ');
+	putb_64(val, 3, 0);
+}
+
+void pretty_putb_32(uint32_t val) { 
+	putb_64(val, 31, 28);
+	putc(' ');
+	putb_64(val, 27, 24);
+	putc(' ');
+	putb_64(val, 23, 20);
+	putc(' ');
+	putb_64(val, 19, 16);
+	putc(' ');
+	putb_64(val, 15, 12);
+	putc(' ');
+	putb_64(val, 11, 8);
+	putc(' ');
+	putb_64(val, 7, 4);
+	putc(' ');
+	putb_64(val, 3, 0);
+}
