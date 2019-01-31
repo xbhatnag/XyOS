@@ -93,8 +93,9 @@ void tick() {
 void exception_handler_1() {
 	// Attempt to process exception
 	if (interrupt_status_1()) {
+		// Looks to be a H/W interrupt
 		if (arm_timer_was_interrupted()) {
-			arm_timer_ack_interrupt();	
+			arm_timer_ack_interrupt();
 		} else if (system_timer_chan_1_was_interrupted()) {
 			// Treat system timer channel 1 as a clock for now
 			tick();
@@ -105,6 +106,7 @@ void exception_handler_1() {
 			error("Unknown H/W exception");	
 		}
 	} else {
+		// Looks to be a software interrupt
 		exception_details_1();
 		error("Unknown S/W exception");
 	}

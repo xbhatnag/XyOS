@@ -31,16 +31,15 @@ void newline(){
 void puti_64(uint64_t num) {
 	// At most 10 digits
 	char c[10];
-	c[0] = '0';
-
 	int i = 0;
-	while (num != 0) {
+
+	do {
 		c[i] = (num % 10) + '0';
 		i+=1;
 		num = num / 10;
-	}
+	} while (num != 0);
 
-	for (int j = i; j >= 0; j--) {
+	for (int j = i - 1; j >= 0; j--) {
 		uart_output(c[j]);
 	}
 }
@@ -48,16 +47,15 @@ void puti_64(uint64_t num) {
 void puti_32(uint32_t num) {
 	// At most 10 digits
 	char c[10];
-	c[0] = '0';
-
 	int i = 0;
-	while (num != 0) {
+
+	do {
 		c[i] = (num % 10) + '0';
 		i+=1;
 		num = num / 10;
-	}
+	} while (num != 0);
 
-	for (int j = i; j >= 0; j--) {
+	for (int j = i - 1; j >= 0; j--) {
 		uart_output(c[j]);
 	}
 }

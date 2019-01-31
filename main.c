@@ -5,6 +5,7 @@
 #include "arm_timer.h"
 #include "system_timer.h"
 #include "interrupts.h"
+#include "mailbox.h"
 #include <stdint.h>
 
 // Implemented in interrupts_asm.S
@@ -16,8 +17,6 @@ extern void jump_to_el1();
 
 // Implemented in vectors_asm.S
 extern void set_vector_table();
-
-extern uint64_t interrupt_status_1();
 
 void menu(char c);
 
@@ -35,7 +34,7 @@ void el2_main() {
 
 void el1_main() {
 	newline();
-	println("## Welcome to EL2");
+	println("## Welcome to EL1");
 	println("┣━ Enabling IRQ");
 	enable_irq();
 
@@ -120,6 +119,11 @@ void menu(char c){
 			gpio_set(10, GPIO_LEVEL_HIGH);
 			break;
 		}
+		case 'l': {
+			println("Turning LED on...");
+			mailbox_turn_led_on();
+			break;
+		}
 		case 'c': {
 			start_clock();
 			break;
@@ -140,8 +144,31 @@ void main() {
 	gpio_mode(11, GPIO_MODE_OUTPUT);
 	
 	println("### Welcome to XyOS");
+
+	print("Firmware Revision : ");
+	puti_32(mailbox_get_firmware_revision());
+	newline();
+
+	print("Board Model : ");
+	puti_32(mailbox_get_board_model());
+	newline();
+
+	print("Board Revision : ");
+	puti_32(mailbox_get_board_revision());
+	newline();
+
 	print("Current Exception Level : ");
 	putc(exception_level() + '0');
+	newline();
+
+	print("ARM Memory Size : ");
+	puti_32(mailbox_get_arm_memory_size());
+	print(" MB");
+	newline();
+
+	print("VC Memory Size : ");
+	puti_32(mailbox_get_vc_memory_size());
+	print(" MB");
 	newline();
 
 	switch (exception_level()) {
@@ -152,5 +179,3 @@ void main() {
 
 	error("Returned from main menu");
 }
-
-
