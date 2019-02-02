@@ -14,7 +14,7 @@ extern uint64_t exception_link_1();
 extern uint64_t saved_program_state_1();
 extern uint64_t interrupt_status_1();
 
-uint64_t clock = 0;
+uint64_t stopwatch = 0;
 
 void exception_handler_2() {
 	println("######### EXCEPTION #########");
@@ -78,13 +78,13 @@ void exception_details_1() {
 
 void tick() {
 	// Increment the clock tick
-	clock += 1;
+	stopwatch += 1;
 
 	// Save the cursor position, move cursor to top row, clear row
-	print("\0337\033[H\033[2KCLOCK: ");
+	print("\0337\033[H\033[2KSTOPWATCH: ");
 
 	// Print the clock there
-	puti_64(clock);
+	puti_64(stopwatch);
 
 	// Restore the cursor to its original position
 	print("\0338");

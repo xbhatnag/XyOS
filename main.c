@@ -65,8 +65,8 @@ void force_exception(){
 	println("Return from exception");
 }
 
-void start_clock() {
-	println("Starting clock");
+void start_stopwatch() {
+	println("Starting stopwatch");
 	system_timer_chan_1_countdown(1000);
 }
 
@@ -124,8 +124,12 @@ void menu(char c){
 			mailbox_turn_led_on();
 			break;
 		}
+		case 's': {
+			start_stopwatch();
+			break;
+		}
 		case 'c': {
-			start_clock();
+			mailbox_print_all_clocks();
 			break;
 		}
 		default: {
@@ -143,32 +147,37 @@ void main() {
 	gpio_mode(10, GPIO_MODE_OUTPUT);
 	gpio_mode(11, GPIO_MODE_OUTPUT);
 	
-	println("### Welcome to XyOS");
+	println("## Welcome to XyOS");
 
-	print("Firmware Revision : ");
+	print("┣━ Firmware Revision : ");
 	puti_32(mailbox_get_firmware_revision());
 	newline();
 
-	print("Board Model : ");
+	print("┣━ Board Model : ");
 	puti_32(mailbox_get_board_model());
 	newline();
 
-	print("Board Revision : ");
+	print("┣━ Board Revision : ");
 	puti_32(mailbox_get_board_revision());
 	newline();
 
-	print("Current Exception Level : ");
-	putc(exception_level() + '0');
+	print("┣━ System Temperature : ");
+	puti_32(mailbox_get_system_temp());
+	print("°C");
 	newline();
 
-	print("ARM Memory Size : ");
+	print("┣━ ARM Memory Size : ");
 	puti_32(mailbox_get_arm_memory_size());
 	print(" MB");
 	newline();
 
-	print("VC Memory Size : ");
+	print("┣━ VC Memory Size : ");
 	puti_32(mailbox_get_vc_memory_size());
 	print(" MB");
+	newline();
+
+	print("┗━ Current Exception Level : ");
+	putc(exception_level() + '0');
 	newline();
 
 	switch (exception_level()) {

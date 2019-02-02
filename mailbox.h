@@ -9,5 +9,7 @@ uint32_t mailbox_get_vc_memory_size();
 uint32_t mailbox_get_firmware_revision();
 uint32_t mailbox_get_board_model();
 uint32_t mailbox_get_board_revision();
+void mailbox_print_all_clocks();
+uint32_t mailbox_get_system_temp();
 
 #endif
