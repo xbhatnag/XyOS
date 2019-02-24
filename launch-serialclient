@@ -1,0 +1,6 @@
+#!/bin/bash
+DIRECTORY=SerialClient
+IMAGE=kernel8.img
+SDCARD=/Volumes/BOOT
+
+cd $DIRECTORY && make && cp $IMAGE $SDCARD

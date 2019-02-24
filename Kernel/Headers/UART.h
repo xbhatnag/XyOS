@@ -1,0 +1,25 @@
+#ifndef _UART_H_
+#define _UART_H_
+
+#include "Peripherals.h"
+#include <stdint.h>
+
+#define AUX_BASE 	      (PERIPHERALS_BASE + 0x215000)
+#define AUX_STATE	      ((uint32_t*)(AUX_BASE + 0x04))
+#define AUX_MU_IO_REG	  ((uint32_t*)(AUX_BASE + 0x40))
+#define AUX_MU_IER_REG	((uint32_t*)(AUX_BASE + 0x44))
+#define AUX_MU_IIR_REG	((uint32_t*)(AUX_BASE + 0x48))
+#define AUX_MU_LCR_REG	((uint32_t*)(AUX_BASE + 0x4C))
+#define AUX_MU_MCR_REG	((uint32_t*)(AUX_BASE + 0x50))
+#define AUX_MU_LSR_REG	((uint32_t*)(AUX_BASE + 0x54))
+#define AUX_MU_MSR_REG	((uint32_t*)(AUX_BASE + 0x58))
+#define AUX_MU_CNTL_REG	((uint32_t*)(AUX_BASE + 0x60))
+#define AUX_MU_STAT_REG	((uint32_t*)(AUX_BASE + 0x64))
+#define AUX_MU_BAUD	    ((uint32_t*)(AUX_BASE + 0x68))
+
+void uart_setup();
+void uart_flush();
+void uart_output(unsigned int letter);
+unsigned int uart_input();
+
+#endif

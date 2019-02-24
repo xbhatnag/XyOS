@@ -1,0 +1,7 @@
+#!/bin/bash
+DEVICE=/dev/cu.Repleo-PL2303-00003414
+DIRECTORY=Kernel
+IMAGE=Kernel.img
+SERIALSERVER=../SerialServer/SerialServer.py
+
+cd $DIRECTORY && make && python3 $SERIALSERVER $DEVICE $IMAGE && screen $DEVICE 115200

@@ -1,22 +1,32 @@
+# Program Variables
 TOOLCHAIN	= aarch64-none-elf
 GCC		= $(TOOLCHAIN)-gcc
 OBJCOPY		= $(TOOLCHAIN)-objcopy
-GDB		= $(TOOLCHAIN)-gdb
-QEMU		= qemu-system-aarch64
-C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles
-C_FILES		= $(wildcard *.c)
-C_OBJS		= $(C_FILES:.c=.o)
-ASM_FLAGS	= 
-ASM_FILES	= $(wildcard *.S)
-ASM_OBJS	= $(ASM_FILES:.S=.o)
-LINK_FLAGS	= -nostdlib -nostartfiles
-OUTPUT		= kernel8
-SD_CARD		= /Volumes/boot
-LINKER		= linker.ld
-GDB_CONF	= gdb.conf
 
-$(OUTPUT).img: $(ASM_OBJS) $(C_OBJS)
-	$(GCC) $(LINK_FLAGS) $(C_OBJS) $(ASM_OBJS) -T $(LINKER) -o $(OUTPUT).elf
+# Libraries
+LIBRARIES_C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles -ILibraries/Headers
+LIBRARIES_C_FILES		= $(shell find Libraries -name "*.c")
+LIBRARIES_C_OBJECTS	= $(C_FILES:.c=.o)
+
+# C Variables
+C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles -IBootloader/Headers -ILibraries/Headers
+C_FILES		= $(shell find Bootloader -name "*.c")
+C_OBJECTS	= $(C_FILES:.c=.o)
+
+# Assembly Variables
+ASM_FLAGS	=
+ASM_FILES	= $(shell find Bootloader -name "*.S")
+ASM_OBJECTS	= $(ASM_FILES:.S=.o)
+
+# Linker Variables
+LINK_FLAGS	= -nostdlib -nostartfiles
+LINKER_FILE	= Linker.ld
+
+# Output Variables
+OUTPUT		= Bootloader
+
+$(OUTPUT).img: $(ASM_OBJECTS) $(C_OBJECTS) $(LIBRARIES_C_OBJECTS) $(LINKER_FILE)
+	$(GCC) $(LINK_FLAGS) $(C_OBJECTS) $(ASM_OBJECTS) $(LIBRARIES_C_OBJECTS) -T $(LINKER_FILE) -o $(OUTPUT).elf
 	$(OBJCOPY) $(OUTPUT).elf -O binary $(OUTPUT).img
 
 %.o: %.c
@@ -25,15 +35,5 @@ $(OUTPUT).img: $(ASM_OBJS) $(C_OBJS)
 %.o: %.S
 	$(GCC) $(ASM_FLAGS) -c $< -o $@
 
-copy: $(OUTPUT).img
-	rm $(SD_CARD)/$(OUTPUT).img
-	cp $(OUTPUT).img $(SD_CARD)
-
 clean:
-	rm $(C_OBJS) $(ASM_OBJS) $(OUTPUT).*
-
-emulate:
-	$(QEMU) -M raspi3 -kernel $(OUTPUT).img -s -S -serial stdio
-
-gdb: $(GDB_CONF) $(OUTPUT).img
-	$(GDB) --command=$(GDB_CONF)
+	rm $(C_OBJECTS) $(ASM_OBJECTS) $(OUTPUT).*

@@ -1,0 +1,7 @@
+#ifndef _MMAP_IO_H_
+#define _MMAP_IO_H_
+
+#define PERIPHERALS_BASE  0xFFFFFFFFFF000000
+#define PERIPHERALS_END   0xFFFFFFFFFFFFFFFF
+
+#endif

@@ -1,2 +1,0 @@
-#!/bin/bash
-screen /dev/cu.Repleo-PL2303-00001414 115200

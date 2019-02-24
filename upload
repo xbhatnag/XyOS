@@ -1,2 +1,0 @@
-#!/bin/bash
-python3 ./RemoteUpload/upload.py /dev/cu.Repleo-PL2303-00001414 kernel8.img
