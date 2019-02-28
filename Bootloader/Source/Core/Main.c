@@ -7,13 +7,13 @@ extern void launch_kernel();
 extern void set_vector_table();
 
 void main() {
+	println("## Welcome to XyOS Bootloader");
+	println("┗━ Configuring Vector Table");
 	set_vector_table();
-
-	println("# Welcome to XyOS Bootloader");
 
 	newline();
 
-	println("MENU");
+	println("## MENU");
 	println("1. Download Kernel");
 	println("2. Initialize Virtual Memory");
 	println("3. Launch Kernel");

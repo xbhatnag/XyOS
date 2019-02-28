@@ -1,8 +1,12 @@
 #include "VirtualMemory.h"
 #include "ConsoleIO.h"
 #include "KernelLoader.h"
+#include "Mailbox.h"
+#include "Exceptions.h"
 
 extern uint64_t _end;
+
+uint32_t total_arm_memory_pages;
 
 uintptr_t kernel_l1_page_table_begin;
 uintptr_t kernel_l1_page_table_end;
@@ -26,7 +30,13 @@ extern void set_translation_base_register_1(uintptr_t base_reg);
 extern void enable_translation();
 extern uint64_t test_translation(uint64_t value);
 
-void print_val_64(char* title, uintptr_t val) {
+void print_val_32(char* title, uint32_t val) {
+	print(title);
+	puti_32(val);
+	newline();
+}
+
+void print_val_64(char* title, uint64_t val) {
 	print(title);
 	puti_64(val);
 	newline();
@@ -49,6 +59,44 @@ uint64_t create_normal_block_descriptor(uintptr_t address) {
 
 uint64_t create_device_block_descriptor(uintptr_t address) {
 	return (address & MASK_PHYS_ADDR) | DEVICE_BLOCK_DESC_ID;
+}
+
+void create_page_map() {
+	println("Creating Page Map...");
+  uint32_t total_arm_memory = mailbox_get_arm_memory_size();
+	print_val_32("Total ARM Memory = ", total_arm_memory);
+
+  total_arm_memory_pages = total_arm_memory / PAGE_SIZE;
+	print_val_32("Total ARM Memory Pages = ", total_arm_memory_pages);
+
+	uint32_t page_map_size = total_arm_memory_pages;
+	print_val_32("Page Map Size = ", page_map_size);
+
+	uint32_t pages_occupied_by_page_map = page_map_size / PAGE_SIZE;
+	if (page_map_size % PAGE_SIZE) {
+		pages_occupied_by_page_map += 1;
+	}
+	print_val_32("Pages occupied by Page Map = ", pages_occupied_by_page_map);
+
+	println("Zeroing out Page Map...");
+	volatile char* current_page_map_entry = PAGE_MAP_START_ADDRESS;
+	for (uint32_t i = 0; i < total_arm_memory_pages; i++) {
+		*current_page_map_entry = FREE_PAGE;
+		current_page_map_entry += 1;
+	}
+}
+
+void mark_page_used(uint32_t page_number) {
+	if (page_number >= total_arm_memory_pages) {
+		error("THIS PAGE IS NOT IN VALID RANGE");
+	}
+
+	volatile char* page_map_entry = PAGE_MAP_START_ADDRESS + page_number;
+	if (*page_map_entry != FREE_PAGE) {
+		error("THIS PAGE IS NOT FREE!");
+	}
+
+	*page_map_entry = USED_PAGE;
 }
 
 void reserve_page_tables() {
@@ -116,6 +164,14 @@ void reserve_page_tables() {
 	// Reserve 64KB for Kernel Stack
 	kernel_stack_top = align_64_kb(kernel_lower_l3_page_table_end);
 	kernel_stack_bottom = kernel_stack_top + KB_64;
+
+	uint32_t num_pages_used = kernel_stack_bottom / PAGE_SIZE;
+	if (kernel_stack_bottom % PAGE_SIZE) {
+		num_pages_used += 1;
+	}
+	for (uint32_t i = 0; i < num_pages_used; i++) {
+		mark_page_used(i);
+	}
 
 	print_val_64("Kernel Start Address             = ", KERNEL_PHYSICAL_START);
 	print_val_64("Kernel End Address               = ", kernel_physical_end);
@@ -197,6 +253,7 @@ void map_peripherals_and_kernel_stack() {
 }
 
 void vmem_init() {
+	create_page_map();
 	reserve_page_tables();
 	create_table_entries();
 	map_kernel_physical_memory();

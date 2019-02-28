@@ -109,12 +109,6 @@ void main() {
 	println("┣━ Configuring Vector Table");
 	set_vector_table();
 
-	/*
-	 * MAILBOX DOES NOT WORK IN VIRTUAL MEMORY JUST YET
-	 * VC requires physical addresses, not virtual
-	 */
-
-	/*
 	print("┣━ Firmware Revision : ");
 	puti_32(mailbox_get_firmware_revision());
 	newline();
@@ -141,7 +135,6 @@ void main() {
 	puti_32(mailbox_get_vc_memory_size() / (1024 * 1024));
 	print(" MB");
 	newline();
-	*/
 
 	print("┗━ Current Exception Level : ");
 	putc(exception_level() + '0');

@@ -17,6 +17,9 @@
 #define L2_TABLE_SIZE						(8 * L2_TOTAL_PAGES)
 #define L3_TABLE_SIZE						(8 * L2_TOTAL_PAGES)
 #define PERIPHERALS_PAGES       256
+#define PAGE_MAP_START_ADDRESS  ((volatile char*) 0x0)
+#define FREE_PAGE							  'F'
+#define USED_PAGE							  'U'
 
 void vmem_init();
 

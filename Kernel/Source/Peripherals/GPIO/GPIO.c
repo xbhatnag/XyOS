@@ -1,7 +1,7 @@
 #include "GPIO.h"
 
 void gpio_mode(int pin, int mode) {
-  uint32_t* addr;
+  volatile uint32_t* addr;
   int current_mode = 0;
   int offset = 0;
   if (pin >= 0 && pin <= 9) {

@@ -3,15 +3,15 @@
 #include "Exceptions.h"
 
 void mailbox_write(uint32_t* address) {
-	uintptr_t value = (uintptr_t)address;
+	uintptr_t value = (uintptr_t) address;
 	while (*MAILBOX_STATUS & 0x80000000) {} // Wait while full flag set
 	value |= 0x8;	// Channel 8
-	*MAILBOX_READ_WRITE = value;
+	*MAILBOX_WRITE = value;
 }
 
 void mailbox_wait_read() {
 	while (*MAILBOX_STATUS & 0x40000000) {} // Wait while empty flag set
-	while (!(*MAILBOX_READ_WRITE & 0x8)) {} // Wait while not channel 8
+	while (!(*MAILBOX_READ & 0x8)) {} // Wait while not channel 8
 }
 
 void mailbox_turn_led_on() {

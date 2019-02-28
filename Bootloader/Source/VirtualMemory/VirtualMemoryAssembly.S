@@ -26,7 +26,7 @@ enable_translation:
 	// MAIR_EL1 Config
 	// Attr0 -> Normal, Non-cacheable Memory
 	// Attr1 -> Device, nGnRnE Memory
-	ldr x0, =0x444
+	ldr x0, =0x44
 	msr MAIR_EL1, x0
 
 	// Set M bit in SCTLR_EL1

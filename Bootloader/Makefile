@@ -4,7 +4,7 @@ GCC		= $(TOOLCHAIN)-gcc
 OBJCOPY		= $(TOOLCHAIN)-objcopy
 
 # C Variables
-C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles -IHeaders -I../Libraries/Headers
+C_FLAGS		= -Wall -O2 -ffreestanding -nostartfiles -IHeaders
 C_FILES		= $(shell find . -name "*.c")
 C_OBJECTS	= $(C_FILES:.c=.o)
 

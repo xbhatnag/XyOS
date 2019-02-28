@@ -4,8 +4,8 @@
 
 void print(char* s){
     while(*s != '\0') {
-    	uart_output(*s);
-	     s++;
+      uart_output(*s);
+      s++;
     }
 }
 
@@ -24,8 +24,8 @@ char getc(){
 }
 
 void newline(){
-   uart_output('\n');
-   uart_output('\r');
+   putc('\n');
+   putc('\r');
 }
 
 void puti_64(uint64_t num) {
@@ -40,7 +40,7 @@ void puti_64(uint64_t num) {
 	} while (num != 0);
 
 	for (int j = i - 1; j >= 0; j--) {
-		uart_output(c[j]);
+		putc(c[j]);
 	}
 }
 
@@ -56,7 +56,7 @@ void puti_32(uint32_t num) {
 	} while (num != 0);
 
 	for (int j = i - 1; j >= 0; j--) {
-		uart_output(c[j]);
+		putc(c[j]);
 	}
 }
 
