@@ -4,13 +4,13 @@
 #include "Peripherals.h"
 #include <stdint.h>
 
-#define ARM_TIMER_BASE		 (PERIPHERALS_BASE + 0xB400)
-#define ARM_TIMER_LOAD		 ((volatile uint32_t*)(ARM_TIMER_BASE))
-#define ARM_TIMER_VALUE		 ((volatile uint32_t*)(ARM_TIMER_BASE + 0x4))
-#define ARM_TIMER_CONTROL	 ((volatile uint32_t*)(ARM_TIMER_BASE + 0x8))
-#define ARM_TIMER_IRQ_ACK	 ((volatile uint32_t*)(ARM_TIMER_BASE + 0xC))
-#define ARM_TIMER_RAW_IRQ	 ((volatile uint32_t*)(ARM_TIMER_BASE + 0x10))
-#define ARM_TIMER_MASK_IRQ ((volatile uint32_t*)(ARM_TIMER_BASE + 0x14))
+#define ARM_TIMER_BASE          (PERIPHERALS_BASE + 0xB400)
+#define ARM_TIMER_LOAD          ((volatile uint32_t*)(ARM_TIMER_BASE))
+#define ARM_TIMER_VALUE         ((volatile uint32_t*)(ARM_TIMER_BASE + 0x4))
+#define ARM_TIMER_CONTROL       ((volatile uint32_t*)(ARM_TIMER_BASE + 0x8))
+#define ARM_TIMER_IRQ_ACK       ((volatile uint32_t*)(ARM_TIMER_BASE + 0xC))
+#define ARM_TIMER_RAW_IRQ       ((volatile uint32_t*)(ARM_TIMER_BASE + 0x10))
+#define ARM_TIMER_MASK_IRQ      ((volatile uint32_t*)(ARM_TIMER_BASE + 0x14))
 
 void arm_timer_enable();
 uint32_t arm_timer_is_enabled();
