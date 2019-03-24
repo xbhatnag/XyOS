@@ -1,16 +1,16 @@
 # XyOS
+XyOS is a 64-Bit micro-kernel written in C and Assembly designed to run on the Raspberry Pi 3B.
+
 ## Goals
-1. Build a 64Bit Kernel for the Raspberry Pi 3B. Code bare metal, directly onto the CPU.
-2. Get access to basic peripherals on the Raspberry Pi - GPIO, UART, Timers.
-3. Implement synchronization primitives - Spinlocks, Locks, CVs and Semaphores.
-4. Implement concurrency primitives - Interrupts, Context Switching and Threads.
-5. Implement user space - processes, system calls, virtual memory.
-6. Build an abstraction layer for higher level peripherals - USB, HDMI, WiFi, Bluetooth, etc.
+- [X] Get something to boot reliably. Get familiar with AArch64 concepts.
+- [X] Get access to basic peripherals on the Raspberry Pi - GPIO, UART, Timers.
+- [X] Enable software and hardware interrupts
+- [X] Setup virtual memory for kernel and user space
+- [ ] Implement synchronization primitives - Spinlocks, Locks, CVs and Semaphores.
+- [ ] Implement concurrency primitives - Interrupts, Context Switching and Threads.
+- [ ] Implement user space - processes, system calls, etc.
+- [ ] Build an abstraction layer for higher level peripherals - USB, HDMI, WiFi, Bluetooth, etc.
 
-# Progress
-## Issues
+## Tracking Progress
 An open issue is either a goal that I want to achieve or a problem that I need to fix.
-As I start working on the issue, I'll try to explain things there via comments.
-
-## Wiki
-I'll try to keep it upto date with my findings + my understanding of how things work on the Raspberry Pi.
+As I start working on something, I'll try to explain things there via comments.
