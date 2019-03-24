@@ -6,6 +6,7 @@
 #include "SystemTimer.h"
 #include "InterruptController.h"
 #include "Mailbox.h"
+#include "FrameBuffer.h"
 #include <stdint.h>
 
 // Implemented in MainAssembly.S
@@ -65,6 +66,26 @@ void menu(char c){
 		}
 		case 'h': {
 			hypervisor_transfer();
+			break;
+		}
+		case 'a': {
+			uint64_t* address = frame_buffer_allocate();
+			for (uint64_t i = 0; i < 20; i++) {
+				*address = 0xFFFFFFFFFFFFFFFF;
+			}
+			break;
+		}
+		case 'b': {
+			uint32_t block_num = 0;
+			while (frame_buffer_get_edid_block(block_num)) {
+				block_num += 1;
+				newline();
+				newline();
+			}
+			break;
+		}
+		case 'd': {
+			frame_buffer_blank_screen();
 			break;
 		}
 		case 't': {

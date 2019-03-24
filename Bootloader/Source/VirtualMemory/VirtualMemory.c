@@ -63,10 +63,10 @@ uint64_t create_device_block_descriptor(uintptr_t address) {
 
 void create_page_map() {
 	println("Creating Page Map...");
-  uint32_t total_arm_memory = mailbox_get_arm_memory_size();
+	uint32_t total_arm_memory = mailbox_get_arm_memory_size();
 	print_val_32("Total ARM Memory = ", total_arm_memory);
 
-  total_arm_memory_pages = total_arm_memory / PAGE_SIZE;
+	total_arm_memory_pages = total_arm_memory / PAGE_SIZE;
 	print_val_32("Total ARM Memory Pages = ", total_arm_memory_pages);
 
 	uint32_t page_map_size = total_arm_memory_pages;

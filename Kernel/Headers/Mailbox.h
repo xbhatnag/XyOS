@@ -10,6 +10,8 @@
 #define MAILBOX_STATUS          ((volatile uint32_t*)(MAILBOX_BASE + 0x18))
 #define MAILBOX_WRITE           ((volatile uint32_t*)(MAILBOX_BASE + 0x20))
 
+void mailbox_write(uint32_t* address);
+void mailbox_wait_read();
 void mailbox_turn_led_on();
 uint32_t mailbox_get_arm_memory_size();
 uint32_t mailbox_get_vc_memory_size();

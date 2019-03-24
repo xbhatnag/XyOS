@@ -19,7 +19,7 @@
 
 void uart_setup();
 void uart_flush();
-void uart_output(unsigned int letter);
-unsigned int uart_input();
+void uart_output(uint32_t letter);
+uint32_t uart_input();
 
 #endif

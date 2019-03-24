@@ -1,6 +1,5 @@
 #include "ConsoleIO.h"
 #include "VirtualMemory.h"
-#include "Mailbox.h"
 #include "KernelLoader.h"
 
 extern void launch_kernel();

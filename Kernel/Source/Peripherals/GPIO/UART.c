@@ -59,7 +59,7 @@ void uart_output_flush() {
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x20));
 }
 
-void uart_output(unsigned int letter) {
+void uart_output(uint32_t letter) {
   uart_output_flush();
   *AUX_MU_IO_REG = letter;
 }
@@ -69,7 +69,7 @@ void uart_input_flush() {
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x1));
 }
 
-unsigned int uart_input() {
+uint32_t uart_input() {
   uart_input_flush();
   return *AUX_MU_IO_REG;
 }
