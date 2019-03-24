@@ -1,4 +1,4 @@
-# XyOS
+# ![XyOS](https://user-images.githubusercontent.com/14666061/54874196-9f1a4480-4dbc-11e9-9285-a7f5f3401194.png)
 XyOS is a 64-Bit micro-kernel written in C and Assembly designed to run on the Raspberry Pi 3B.
 
 ## Goals
