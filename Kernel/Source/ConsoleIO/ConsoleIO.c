@@ -5,7 +5,7 @@
 void print(char* s){
     while(*s != '\0') {
     	uart_output(*s);
-	s++;
+        s++;
     }
 }
 
@@ -19,13 +19,13 @@ void putc(char c){
 }
 
 char getc(){
-   char c = uart_input();
-   return c;
+    char c = uart_input();
+    return c;
 }
 
 void newline(){
-   putc('\n');
-   putc('\r');
+    putc('\n');
+    putc('\r');
 }
 
 void puti_64(uint64_t num) {
@@ -82,25 +82,25 @@ void putb_32(uint32_t num, int end, int start) {
 	}
 }
 
-void pretty_putb_64(uint64_t val) { 
-	putb_64(val, 31, 28);
-	putc(' ');
-	putb_64(val, 27, 24);
-	putc(' ');
-	putb_64(val, 23, 20);
-	putc(' ');
-	putb_64(val, 19, 16);
-	putc(' ');
-	putb_64(val, 15, 12);
-	putc(' ');
-	putb_64(val, 11, 8);
-	putc(' ');
-	putb_64(val, 7, 4);
-	putc(' ');
-	putb_64(val, 3, 0);
+void pretty_putb_64(uint64_t val) {
+    putb_64(val, 31, 28);
+    putc(' ');
+    putb_64(val, 27, 24);
+    putc(' ');
+    putb_64(val, 23, 20);
+    putc(' ');
+    putb_64(val, 19, 16);
+    putc(' ');
+    putb_64(val, 15, 12);
+    putc(' ');
+    putb_64(val, 11, 8);
+    putc(' ');
+    putb_64(val, 7, 4);
+    putc(' ');
+    putb_64(val, 3, 0);
 }
 
-void pretty_putb_32(uint32_t val) { 
+void pretty_putb_32(uint32_t val) {
 	putb_64(val, 31, 28);
 	putc(' ');
 	putb_64(val, 27, 24);

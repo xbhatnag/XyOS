@@ -1,8 +1,6 @@
 .section ".text.boot"
 
-.global _start
-
-_start:
+_boot:
     // get cpu id
     mrs     x1, mpidr_el1
     and     x1, x1, #3
@@ -27,7 +25,7 @@ _start:
     sub     w2, w2, #1
     cbnz    w2, 3b
 
-    // jump to C code. we are expected to be in el3
+    // jump to C code. we are expected to be in el2
 4:  bl      main
     // just in case we somehow return...
     b       1b

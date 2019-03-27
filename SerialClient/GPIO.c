@@ -1,12 +1,12 @@
-#include "gpio.h"
+#include "GPIO.h"
 
 void gpio_mode(int pin, int mode) {
-  volatile unsigned* addr;
+  volatile uint32_t* addr;
   int current_mode = 0;
   int offset = 0;
   if (pin >= 0 && pin <= 9) {
-  	addr = GPIO_SEL0;
-	offset = 0;
+    addr = GPIO_SEL0;
+    offset = 0;
   } else if (pin >= 10 && pin <= 19) {
   	addr = GPIO_SEL1;
 	offset = 10;

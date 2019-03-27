@@ -1,22 +1,9 @@
-#include "Peripherals.h"
 #include "GPIO.h"
 #include "UART.h"
 
-#define AUX_BASE 	(MMAP_IO_BASE + 0x215000)
-#define AUX_STATE	((volatile unsigned*)(AUX_BASE + 0x04))
-#define AUX_MU_IO_REG	((volatile unsigned*)(AUX_BASE + 0x40))
-#define AUX_MU_IER_REG	((volatile unsigned*)(AUX_BASE + 0x44))
-#define AUX_MU_IIR_REG	((volatile unsigned*)(AUX_BASE + 0x48))
-#define AUX_MU_LCR_REG	((volatile unsigned*)(AUX_BASE + 0x4C))
-#define AUX_MU_MCR_REG	((volatile unsigned*)(AUX_BASE + 0x50))
-#define AUX_MU_LSR_REG	((volatile unsigned*)(AUX_BASE + 0x54))
-#define AUX_MU_CNTL_REG	((volatile unsigned*)(AUX_BASE + 0x60))
-#define AUX_MU_STAT_REG	((volatile unsigned*)(AUX_BASE + 0x64))
-#define AUX_MU_BAUD	((volatile unsigned*)(AUX_BASE + 0x68))
-
 void uart_setup() {
-  register unsigned int r;
-  
+  register uint32_t r;
+
   // Enable UART
   *AUX_STATE |= 1;
 
@@ -46,36 +33,43 @@ void uart_setup() {
 
   // Enable TXD1 on pin 14 of GPIO
   gpio_mode(14, GPIO_MODE_ALT5);
-  
+
   // Enable RXD1 on pin 15 of GPIO
   gpio_mode(15, GPIO_MODE_ALT5);
 
   // Control the actuation of both pins
   *GPIO_PUD = 0;
-  
+
   // Run some clock cycles
   r=150; while(r--) { asm volatile("nop"); }
-  
+
   *GPIO_PUD_CLK0 = (1<<14)|(1<<15);
-  
+
   // Run some clock cycles
   r=150; while(r--) { asm volatile("nop"); }
-  
+
   *GPIO_PUD_CLK0 = 0;
 
   // Enable the UART transmitter + receiver. We should be good to go at this point.
   *AUX_MU_CNTL_REG = 3;
 }
 
-void uart_output(unsigned int letter) {
+void uart_output_flush() {
+  // Busy wait until transmitter is idle
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x20));
+}
+
+void uart_output(uint32_t letter) {
+  uart_output_flush();
   *AUX_MU_IO_REG = letter;
 }
 
-unsigned int uart_input() {
+void uart_input_flush() {
   // Busy wait until FIFO holds at least 1 symbol
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x1));
-  return *AUX_MU_IO_REG;
 }
 
-
+uint32_t uart_input() {
+  uart_input_flush();
+  return *AUX_MU_IO_REG;
+}

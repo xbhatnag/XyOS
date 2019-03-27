@@ -29,8 +29,8 @@ def print_progress(iteration, total, prefix='', suffix='', decimals=1, bar_lengt
 
 # Control characters
 stx = b'S'
+cnt = b'C'
 etx = b'E'
-ack = b'A'
 
 # Command line args
 fd = sys.argv[1]
@@ -42,29 +42,35 @@ bytes_sent = 0
 total_bytes = os.stat(kernel_path).st_size
 kernel = open(kernel_path, "rb")
 
+# Initial output
 print(kernel_path, "->", fd)
 print_progress(bytes_sent,total_bytes)
 
-def send(data):
-	s.write(data)
-	s.flush()
-
-	receive = s.read(1)
-	if not receive == ack:
-		print()
-		print("DID NOT GET ACK:", receive, "BYTE:", bytes_sent)
-		exit(1)
+# Send STX
+s.write(stx)
+s.flush()
 
 while (True):
-	data = kernel.read(1)
+    # Data is sent in 8 byte chunks
+    for i in range(8):
+        data = kernel.read(1)
 
-	if not data:
-		send(etx)
-		break
+        # No more data left to send, send junk
+        if not data:
+            data = b'0'
 
+        # Send byte of data
+        s.write(data)
+        s.flush()
+        bytes_sent = bytes_sent + 1
+        print_progress(bytes_sent,total_bytes)
 
-	send(stx)
-	send(data)
-	
-	bytes_sent = bytes_sent + 1
-	print_progress(bytes_sent,total_bytes)
+    # Send ETX and quit
+    if bytes_sent >= total_bytes:
+        s.write(etx)
+        s.flush()
+        break
+
+    # Send CNT
+    s.write(cnt)
+    s.flush()

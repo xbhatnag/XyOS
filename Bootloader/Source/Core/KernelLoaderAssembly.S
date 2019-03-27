@@ -15,7 +15,7 @@ launch_kernel:
 
 	// Set a stack pointer for EL1
 	ldr x0, =0xFFFFFFFFFF000000
-  msr SP_EL1, x0
+	msr SP_EL1, x0
 
 	// Set exception return address
 	ldr x0, =0xFFFF0000000E0000

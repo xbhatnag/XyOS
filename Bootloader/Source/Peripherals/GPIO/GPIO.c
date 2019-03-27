@@ -9,19 +9,19 @@ void gpio_mode(int pin, int mode) {
     offset = 0;
   } else if (pin >= 10 && pin <= 19) {
   	addr = GPIO_SEL1;
-	  offset = 10;
+	offset = 10;
   } else if (pin >= 20 && pin <= 29) {
   	addr = GPIO_SEL2;
-	  offset = 20;
+	offset = 20;
   } else if (pin >= 30 && pin <= 39) {
   	addr = GPIO_SEL3;
-	  offset = 30;
+	offset = 30;
   } else if (pin >= 40 && pin <= 49) {
   	addr = GPIO_SEL4;
-	  offset = 40;
+	offset = 40;
   } else {
   	addr = GPIO_SEL5;
-	  offset = 50;
+	offset = 50;
   }
   current_mode = *addr;
   current_mode |= mode << ((pin-offset)*3);
