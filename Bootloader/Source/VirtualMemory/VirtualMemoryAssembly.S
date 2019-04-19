@@ -29,8 +29,10 @@ enable_translation:
 	ldr x0, =0x44
 	msr MAIR_EL1, x0
 
-	// Set M bit in SCTLR_EL1
-	ldr x0, =0xC00801
+	// Set M bit (MMU)
+	// Set C bit (data cacheability)
+	// Set I bit (instruction cacheability)
+	ldr x0, =0xC01805
 	msr SCTLR_EL1, x0
 
 	// Clear the TLB

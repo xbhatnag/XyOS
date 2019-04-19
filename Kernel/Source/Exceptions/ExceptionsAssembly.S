@@ -5,6 +5,11 @@ enable_irq:
 	msr DAIFClr, #15
 	ret
 
+.global disable_irq
+disable_irq:
+	msr DAIFSet, #15
+	ret
+
 .global interrupt_status_1
 interrupt_status_1:
 	mrs x0, ISR_EL1
@@ -42,6 +47,12 @@ saved_program_state_1:
 
 .global exception_handler
 exception_handler:
+	// Disable all H/W interrupts.
+	// It's hard to deal with another
+	// H/W interrupt while this one is
+	// being dealt with.
+	msr DAIFSet, #15
+
 	// Save all registers
 	sub sp, sp, #16
 	stp x0,x1,[sp]
@@ -91,16 +102,34 @@ exception_handler:
 	sub sp, sp, #16
 	stp x30,x0,[sp]
 
-	// Jump to right exception handler
-	mrs x0, CurrentEL
-	and x0, x0, #12		// Only bits 3 and 2 are relevant
-	lsr x0, x0, #2		// Shift right by 2
+	// Store return address for the current thread
+	mrs x0, ELR_EL1
+	ldr x1, =current_thread_saved_program_counter
+	str x0, [x1, 0]
 
-is_el1:
-	// Go to exception handler 1
-	cmp x0, #1
-	bne error
+	// Store stack pointer for the current thread
+	mov x0, sp
+	ldr x1, =current_thread_saved_stack_pointer
+	str x0, [x1, 0]
+
+	// Set the stack to the end of some temp space
+	// The scheduler tries to figure out who runs
+	// next using this temp space
+	ldr x0, =0xFFFF000000010000
+	add sp, x0, #0
+
+	// Go to EL1 exception handler
 	bl exception_handler_1
+
+	// Restore return address for the current thread
+	ldr x0, =current_thread_saved_program_counter
+	ldr x1, [x0, 0]
+	msr ELR_EL1, x1
+
+	// Restore stack pointer for the current thread
+	ldr x0, =current_thread_saved_stack_pointer
+	ldr x1, [x0, 0]
+	add sp, x1, #0
 
 restore_registers:
 	ldp x30,x0,[sp]
@@ -150,6 +179,9 @@ restore_registers:
 
 	ldp x0,x1,[sp]
 	add sp, sp, #16
+
+	// Re-enable H/W interrupts
+	msr DAIFClr, #15
 
 	// Return from exception
 	// At this point, ELR_ELn

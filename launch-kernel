@@ -1,5 +1,5 @@
 #!/bin/bash
-DEVICE=/dev/cu.Repleo-PL2303-00003414
+DEVICE=/dev/cu.Repleo-PL2303-00003214
 DIRECTORY=Kernel
 IMAGE=Kernel.img
 SERIALSERVER=../SerialServer/SerialServer.py
