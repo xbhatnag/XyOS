@@ -4,10 +4,6 @@
 #include "Mailbox.h"
 #include "Exceptions.h"
 
-extern uint64_t _end;
-
-uint32_t total_arm_memory_pages;
-
 uintptr_t kernel_l1_page_table_begin;
 uintptr_t kernel_l1_page_table_end;
 
@@ -36,12 +32,6 @@ void print_val_32(char* title, uint32_t val) {
 	newline();
 }
 
-void print_val_64(char* title, uint64_t val) {
-	print(title);
-	puti_64(val);
-	newline();
-}
-
 uintptr_t align_64_kb(uintptr_t address) {
 	uint64_t remainder = address % KB_64;
 	uint64_t aligned = address - remainder;
@@ -59,44 +49,6 @@ uint64_t create_normal_block_descriptor(uintptr_t address) {
 
 uint64_t create_device_block_descriptor(uintptr_t address) {
 	return (address & MASK_PHYS_ADDR) | DEVICE_BLOCK_DESC_ID;
-}
-
-void create_page_map() {
-	println("Creating Page Map...");
-	uint32_t total_arm_memory = mailbox_get_arm_memory_size();
-	print_val_32("Total ARM Memory = ", total_arm_memory);
-
-	total_arm_memory_pages = total_arm_memory / PAGE_SIZE;
-	print_val_32("Total ARM Memory Pages = ", total_arm_memory_pages);
-
-	uint32_t page_map_size = total_arm_memory_pages;
-	print_val_32("Page Map Size = ", page_map_size);
-
-	uint32_t pages_occupied_by_page_map = page_map_size / PAGE_SIZE;
-	if (page_map_size % PAGE_SIZE) {
-		pages_occupied_by_page_map += 1;
-	}
-	print_val_32("Pages occupied by Page Map = ", pages_occupied_by_page_map);
-
-	println("Zeroing out Page Map...");
-	volatile char* current_page_map_entry = PAGE_MAP_START_ADDRESS;
-	for (uint32_t i = 0; i < total_arm_memory_pages; i++) {
-		*current_page_map_entry = FREE_PAGE;
-		current_page_map_entry += 1;
-	}
-}
-
-void mark_page_used(uint32_t page_number) {
-	if (page_number >= total_arm_memory_pages) {
-		error("THIS PAGE IS NOT IN VALID RANGE");
-	}
-
-	volatile char* page_map_entry = PAGE_MAP_START_ADDRESS + page_number;
-	if (*page_map_entry != FREE_PAGE) {
-		error("THIS PAGE IS NOT FREE!");
-	}
-
-	*page_map_entry = USED_PAGE;
 }
 
 void reserve_page_tables() {
@@ -169,24 +121,21 @@ void reserve_page_tables() {
 	if (kernel_stack_bottom % PAGE_SIZE) {
 		num_pages_used += 1;
 	}
-	for (uint32_t i = 0; i < num_pages_used; i++) {
-		mark_page_used(i);
-	}
 
-	print_val_64("Kernel Start Address             = ", KERNEL_PHYSICAL_START);
-	print_val_64("Kernel End Address               = ", kernel_physical_end);
-	print_val_64("Kernel L1 Page Table Begin       = ", kernel_l1_page_table_begin);
-	print_val_64("Kernel L1 Page Table End         = ", kernel_l1_page_table_end);
-	print_val_64("Kernel Upper L2 Page Table Begin = ", kernel_upper_l2_page_table_begin);
-	print_val_64("Kernel Upper L2 Page Table End   = ", kernel_upper_l2_page_table_end);
-	print_val_64("Kernel Upper L3 Page Table Begin = ", kernel_upper_l3_page_table_begin);
-	print_val_64("Kernel Upper L3 Page Table End   = ", kernel_upper_l3_page_table_end);
-	print_val_64("Kernel Lower L2 Page Table Begin = ", kernel_lower_l2_page_table_begin);
-	print_val_64("Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
-	print_val_64("Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
-	print_val_64("Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
-	print_val_64("Kernel Stack Top                 = ", kernel_stack_top);
-	print_val_64("Kernel Stack Bottom              = ", kernel_stack_bottom);
+	puth_with_title_64("Kernel Start Address             = ", KERNEL_PHYSICAL_START);
+	puth_with_title_64("Kernel End Address               = ", kernel_physical_end);
+	puth_with_title_64("Kernel L1 Page Table Begin       = ", kernel_l1_page_table_begin);
+	puth_with_title_64("Kernel L1 Page Table End         = ", kernel_l1_page_table_end);
+	puth_with_title_64("Kernel Upper L2 Page Table Begin = ", kernel_upper_l2_page_table_begin);
+	puth_with_title_64("Kernel Upper L2 Page Table End   = ", kernel_upper_l2_page_table_end);
+	puth_with_title_64("Kernel Upper L3 Page Table Begin = ", kernel_upper_l3_page_table_begin);
+	puth_with_title_64("Kernel Upper L3 Page Table End   = ", kernel_upper_l3_page_table_end);
+	puth_with_title_64("Kernel Lower L2 Page Table Begin = ", kernel_lower_l2_page_table_begin);
+	puth_with_title_64("Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
+	puth_with_title_64("Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
+	puth_with_title_64("Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
+	puth_with_title_64("Kernel Stack Top                 = ", kernel_stack_top);
+	puth_with_title_64("Kernel Stack Bottom              = ", kernel_stack_bottom);
 }
 
 void create_table_entries() {
@@ -204,7 +153,9 @@ void create_table_entries() {
 }
 
 void map_kernel_physical_memory() {
-	uint64_t num_kernel_pages = kernel_lower_l3_page_table_end / PAGE_SIZE;
+	// Map the entire top of physical memory into virtual memory,
+	// upto and including the end of the last l3 page table.
+	uint64_t num_kernel_pages = (kernel_lower_l3_page_table_end - TOP_OF_MEMORY) / PAGE_SIZE;
 
 	if (kernel_lower_l3_page_table_end % PAGE_SIZE) {
 		num_kernel_pages += 1;
@@ -253,22 +204,17 @@ void map_peripherals_and_kernel_stack() {
 }
 
 void vmem_init() {
-	create_page_map();
 	reserve_page_tables();
 	create_table_entries();
 	map_kernel_physical_memory();
 	map_peripherals_and_kernel_stack();
 	set_translation_base_register_1(kernel_l1_page_table_begin);
 	enable_translation();
-	print_val_64("Test TTBR1 Memory : ", test_translation(0xFFFF000000000000));
-	print_val_64("Test Kernel Code  : ", test_translation(0xFFFF0000000E0000));
-
-	print_val_64("Test Invalid Access : ", test_translation(0xFFFFDDDDDDDDDDDD));
-
-	print_val_64("Test Kernel Stack : ", test_translation(0xFFFFFFFFFEFF0000));
-	print_val_64("Test Kernel Stack : ", test_translation(0xFFFFFFFFFEFFFFFF));
-
-	print_val_64("Test Peripherals  : ", test_translation(0xFFFFFFFFFF000000));
-	print_val_64("Test Peripherals  : ", test_translation(0xFFFFFFFFFFFFFFFF));
-
+	puth_with_title_64("Test TTBR1 Memory   = ", test_translation(0xFFFF000000000000));
+	puth_with_title_64("Test Kernel Code    = ", test_translation(0xFFFF0000000E0000));
+	puth_with_title_64("Test Invalid Access = ", test_translation(0xFFFFDDDDDDDDDDDD));
+	puth_with_title_64("Test Kernel Stack   = ", test_translation(0xFFFFFFFFFEFF0000));
+	puth_with_title_64("Test Kernel Stack   = ", test_translation(0xFFFFFFFFFEFFFFFF));
+	puth_with_title_64("Test Peripherals    = ", test_translation(0xFFFFFFFFFF000000));
+	puth_with_title_64("Test Peripherals    = ", test_translation(0xFFFFFFFFFFFFFFFF));
 }

@@ -5,8 +5,12 @@
 #include "SystemTimer.h"
 #include "InterruptController.h"
 #include "Mailbox.h"
+#include "Menu.h"
+#include "FrameBuffer.h"
+#include "FrameBufferGraphics.h"
 #include "TrafficLights.h"
 #include "ThreadHandling.h"
+#include "VirtualMemory.h"
 #include <stdint.h>
 
 // Implemented in MainAssembly.S
@@ -25,6 +29,10 @@ void main() {
 	// but that is not necessary because
 	// the SerialClient or Bootloader
 	// already did it.
+
+	// TODO: This is a hack. Fix it!
+	is_frame_buffer_ready = 0;
+
 	println("## Welcome to XyOS");
 
 	println("┣━ Configuring Vector Table");
@@ -81,10 +89,18 @@ void main() {
 	println("┣━ Enabling System Timer IRQ");
 	ic_enable_system_timer_chan_1_irq();
 
-	println("┗━ Initializing Kernel Threads");
+	println("┣━ Initializing Virtual Memory");
+	vmem_init();
+
+	println("┣━ Initializing Frame Buffer");
+	frame_buffer_init(1024, 768);
+	frame_buffer_clear();
+	println("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
+	println("0123456789!@#$%^&*()_-=+[]{}|\\;:'\",<.>/?`~");
+
 	newline();
 
-	initialize_kernel_threads();
+	main_menu();
 
 	error("We should never reach here");
 }

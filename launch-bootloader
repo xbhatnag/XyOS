@@ -1,5 +1,5 @@
 #!/bin/bash
-DEVICE=/dev/cu.Repleo-PL2303-00003214
+DEVICE=/dev/cu.Repleo-PL2303-00001414
 DIRECTORY=Bootloader
 IMAGE=Bootloader.img
 SERIALSERVER=../SerialServer/SerialServer.py

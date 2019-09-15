@@ -27,9 +27,7 @@ void exception_details_1() {
 	pretty_putb_64(isr);
 	newline();
 
-	print("Interrupt Status (Hex)\t\t");
-	puth_64(isr);
-	newline();
+	puth_with_title_64("Interrupt Status (Hex)\t\t", isr);
 
 	// Exception Syndrome
 	uint64_t esr = exception_syndrome_1();
@@ -37,9 +35,7 @@ void exception_details_1() {
 	pretty_putb_64(esr);
 	newline();
 
-	print("Exception Syndrome (Hex)\t");
-	puth_64(esr);
-	newline();
+	puth_with_title_64("Exception Syndrome (Hex)\t", esr);
 
 	// Exception Link
 	uint64_t elr = exception_link_1();
@@ -47,9 +43,7 @@ void exception_details_1() {
 	pretty_putb_64(elr);
 	newline();
 
-	print("Exception Link (Hex)\t\t");
-	puth_64(elr);
-	newline();
+	puth_with_title_64("Exception Link (Hex)\t\t", elr);
 
 	// Saved Program State
 	uint64_t sps = saved_program_state_1();
@@ -57,9 +51,7 @@ void exception_details_1() {
 	pretty_putb_64(sps);
 	newline();
 
-	print("Saved Program State (Hex)\t");
-	puth_64(sps);
-	newline();
+	puth_with_title_64("Saved Program State (Hex)\t", sps);
 
 	println("#############################");
 }

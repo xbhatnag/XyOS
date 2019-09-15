@@ -1,19 +1,17 @@
 SECTIONS
 {
     . = 0xFFFF0000000E0000;
-    _start = .;
-    .text : { KEEP(*(.text.boot)) *(.text .text.* .gnu.linkonce.t*) }
-    .rodata : { *(.rodata .rodata.* .gnu.linkonce.r*) }
-    PROVIDE(_data = .);
-    .data : { *(.data .data.* .gnu.linkonce.d*) }
+    __kernel_start = .;
+    .text : { KEEP(*(.text.boot)) *(.text) }
+    .rodata : { *(.rodata) }
+    .data : { *(.data) }
     .bss (NOLOAD) : {
         . = ALIGN(16);
         __bss_start = .;
-        *(.bss .bss.*)
-        *(COMMON)
+        *(.bss)
         __bss_end = .;
     }
-    _end = .;
+    __kernel_end = .;
 
    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }
 }

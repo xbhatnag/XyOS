@@ -8,7 +8,7 @@ void mailbox_write(uint32_t* address) {
 	uintptr_t value = get_physical_address((uintptr_t) address);
 	while (*MAILBOX_STATUS & 0x80000000) {} // Wait while full flag set
 	value |= 0x8;	// Channel 8
-	*MAILBOX_WRITE = value;
+	*MAILBOX_WRITE = value + 0x40000000;
 }
 
 void mailbox_wait_read() {

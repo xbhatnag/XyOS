@@ -1,5 +1,5 @@
 #include "ConsoleIO.h"
-#include "FrameBuffer.h"
+#include "FrameBufferGraphics.h"
 #include "Menu.h"
 #include "ThreadHandling.h"
 
@@ -9,49 +9,45 @@ void force_exception(){
 	println("Return from exception");
 }
 
-void typewriter_mode() {
+void get_edid_blocks(){
+	uint8_t block_num = 0;
+	while (frame_buffer_get_edid_block(block_num)) {
+		newline();
+		block_num += 1;
+	}
+}
+
+void typewriter_mode(){
 	println("Typewriter Mode On");
 	while(1) {
 		char input = getc();
-		// Break on Ctrl-C
-		if (input == 3) {
-			newline();
-			return;
-		} else {
-			putc(input);
+		switch (input) {
+			// Ctrl + C
+			case 3: {
+				newline();
+				return;
+			}
+			default: {
+				putc(input);
+			}
 		}
 	}
 }
 
 void main_menu_choice(char c){
 	switch(c) {
-		case 'a': {
-			frame_buffer_allocate();
-			break;
-		}
-		case 'b': {
-			uint32_t block_num = 0;
-			while (frame_buffer_get_edid_block(block_num)) {
-				block_num += 1;
-				newline();
-				newline();
-			}
-			break;
-		}
-		case 'c': {
-			puti_64(counter);
-			newline();
-			break;
-		}
-		case 'd': {
-			frame_buffer_blank_screen();
+		case 'x': {
+			frame_buffer_draw_cross(0xFFFFFF);
 			break;
 		}
 		case 'e': {
-			force_exception();
+			get_edid_blocks();
 			break;
 		}
-
+		case 'c': {
+			frame_buffer_clear();
+			break;
+		}
 		case 't': {
 			typewriter_mode();
 			break;

@@ -41,14 +41,4 @@ void download_kernel() {
 		data = uart_input();
 		if (data == ETX) break;
 	}
-
-	// Wait here while we switch back to the terminal
-	while(1) {
-		// Get character from UART
-		data = uart_input();
-		if (data == ' ') break;
-		uart_output(data);
-	}
-
-	println("Kernel downloaded successfully");
 }

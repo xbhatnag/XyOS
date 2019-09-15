@@ -1,10 +1,30 @@
 #include "ConsoleIO.h"
 #include "UART.h"
+#include "FrameBuffer.h"
+#include "FrameBufferGraphics.h"
 #include <stdint.h>
 
+/*
+ * These are the methods that control I/O to FrameBuffer or UART
+ */
+void putc(char c){
+    if (is_frame_buffer_ready) {
+        frame_buffer_putc(c, 0xFFFFFF);
+    } else {
+        uart_output(c);
+    }
+}
+
+char getc(){
+    return uart_input();
+}
+
+/*
+ * These methods are for general Console IO
+ */
 void print(char* s){
     while(*s != '\0') {
-    	uart_output(*s);
+    	putc(*s);
         s++;
     }
 }
@@ -12,15 +32,6 @@ void print(char* s){
 void println(char* s){
     print(s);
     newline();
-}
-
-void putc(char c){
-    uart_output(c);
-}
-
-char getc(){
-    char c = uart_input();
-    return c;
 }
 
 void newline(){
@@ -167,4 +178,16 @@ void pretty_putb_32(uint32_t val) {
 	putb_64(val, 7, 4);
 	putc(' ');
 	putb_64(val, 3, 0);
+}
+
+void puth_with_title_32(char* title, uint32_t val) {
+	print(title);
+	puth_32(val);
+	newline();
+}
+
+void puth_with_title_64(char* title, uint64_t val) {
+	print(title);
+	puth_64(val);
+	newline();
 }

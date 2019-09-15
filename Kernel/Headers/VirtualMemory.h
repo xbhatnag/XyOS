@@ -1,7 +1,10 @@
 #ifndef __VMEM_H__
 #define __VMEM_H__
 
-#define TOP_OF_MEMORY					0x0
+#include <stdint.h>
+
+#define TOP_OF_MEMORY					0xFFFF000000000000
+#define LAST_PAGE_VADDR					0xFFFFFFFFFFFF0000
 #define PAGE_SIZE                       KB_64
 #define KB_64                           (64 * 1024)
 #define MB_512                          (512 * 1024 * 1024)
@@ -18,5 +21,6 @@
 #define PERIPHERALS_PAGES               256
 
 void vmem_init();
+uintptr_t allocate_from_lower_l3(uintptr_t paddr, uint32_t len);
 
 #endif
