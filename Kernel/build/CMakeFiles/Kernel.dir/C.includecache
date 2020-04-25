@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../Headers/ConsoleIO.h
+stdint.h
+-
+
+../Headers/FrameBuffer.h
+stdint.h
+-
+
+../Headers/FrameBufferGraphics.h
+
+../Headers/Menu.h
+
+../Headers/Threading.h
+
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Menu.c
+ConsoleIO.h
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/ConsoleIO.h
+FrameBuffer.h
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/FrameBuffer.h
+FrameBufferGraphics.h
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/FrameBufferGraphics.h
+Menu.h
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Menu.h
+Threading.h
+/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Threading.h
+

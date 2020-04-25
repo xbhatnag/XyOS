@@ -1,26 +1,24 @@
-#ifndef _STDIO_H_
-#define _STDIO_H_
+#ifndef _CONSOLE_IO_H
+#define _CONSOLE_IO_H
 
 #include <stdint.h>
 
-void putc(char c);
-void puti_64(uint64_t num);
-void puti_32(uint32_t num);
-void puth_64(uint64_t num);
-void puth_32(uint32_t num);
-void putb_64(uint64_t num, int end, int start);
-void putb_32(uint32_t num, int end, int start);
-void pretty_putb_64(uint64_t num);
-void pretty_putb_32(uint32_t num);
-void puth_with_title_32(char* title, uint32_t val);
-void puth_with_title_64(char* title, uint64_t val);
-void puti_with_title_32(char* title, uint32_t val);
-void puti_with_title_64(char* title, uint64_t val);
+/*
+ *  HELPER FUNCTIONS
+ */
 
-void print(char* s);
-void println(char* s);
+// Support for variable arguments
+// typedef char *va_list;
+// #define __va_argsiz(t)          (((sizeof(t) + sizeof(int) - 1) / sizeof(int)) * sizeof(int))
+// #define va_start(ap, pN)        ((ap) = ((va_list) __builtin_next_arg(pN)))
+// #define va_end(ap)              ((void)0)
+// #define va_arg(ap, t)           (((ap) = (ap) + __va_argsiz(t)), *((t*) (void*) ((ap) - __va_argsiz(t))))
+
+void printf(char *fmt, ...);
+void println(const char *str);
 void newline();
-
+void putstr(const char *str);
+void putc(char c);
 char getc();
 
 #endif

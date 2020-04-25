@@ -1,6 +1,6 @@
 SECTIONS
 {
-    . = 0xC0000;
+    . = 0x80000;
     _start = .;
     .text : { KEEP(*(.text.boot)) *(.text) }
     .rodata : { *(.rodata) }

@@ -1,11 +1,13 @@
 #include "ConsoleIO.h"
 #include "VirtualMemory.h"
 #include "KernelLoader.h"
+#include "UART.h"
 
 extern void launch_kernel();
 extern void set_vector_table();
 
 void main() {
+	uart_setup();
 	println("## Welcome to XyOS Bootloader");
 	println("Configuring Vector Table...");
 	set_vector_table();

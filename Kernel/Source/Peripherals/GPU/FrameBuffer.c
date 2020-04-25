@@ -4,7 +4,6 @@
 #include "Exceptions.h"
 #include "VirtualMemory.h"
 
-uint32_t is_frame_buffer_ready = 0;
 extern uint64_t test_translation(uint64_t value);
 
 void frame_buffer_init(uint32_t desired_width, uint32_t desired_height) {
@@ -130,24 +129,16 @@ void frame_buffer_init(uint32_t desired_width, uint32_t desired_height) {
 	frame_buffer_virtual_base_address = (unsigned char*) base_address;
 
 
-	println(           "   ################################################################");
-	print(             "   # Frame Buffer Resolution                 = ");
-	puti_32(frame_buffer_width);
-	print(" x ");
-	puti_32(frame_buffer_height);
-	newline();
-
-	puti_with_title_32("   # Frame Buffer Size                       = ", frame_buffer_size);
-	puth_with_title_32("   # Frame Buffer Physical Base Address      = ", frame_buffer_physical_base_address);
-	puth_with_title_32("   # Frame Buffer Physical End Address       = ", frame_buffer_physical_base_address + frame_buffer_size - 1);
-	puth_with_title_64("   # Frame Buffer Virtual Base Address       = ", base_address);
-	puth_with_title_64("   # Frame Buffer Virtual End Address        = ", end_address);
-	puth_with_title_64("   # Test Translation (Virtual Base Address) = ", test_translation(base_address));
-	puth_with_title_64("   # Test Translation (Virtual End Address)  = ", test_translation(end_address));
-	println(           "   ################################################################");
-
-	// From this point on, all output is directed to the Frame Buffer
-	is_frame_buffer_ready = 1;
+	println("   ################################################################");
+	printf("   # Frame Buffer Resolution                 = %u x %u\n", frame_buffer_width, frame_buffer_height);
+	printf("   # Frame Buffer Size                       = %u\n", frame_buffer_size);
+	printf("   # Frame Buffer Physical Base Address      = %u\n", frame_buffer_physical_base_address);
+	printf("   # Frame Buffer Physical End Address       = %u\n", frame_buffer_physical_base_address + frame_buffer_size - 1);
+	printf("   # Frame Buffer Virtual Base Address       = %u\n", base_address);
+	printf("   # Frame Buffer Virtual End Address        = %u\n", end_address);
+	printf("   # Test Translation (Virtual Base Address) = %u\n", test_translation(base_address));
+	printf("   # Test Translation (Virtual End Address)  = %u\n", test_translation(end_address));
+	println("   ################################################################");
 }
 
 void print_hex_8(char value) {
@@ -193,9 +184,7 @@ uint32_t frame_buffer_get_edid_block(uint32_t block_num) {
 		error("Could not get EDID block.");
 	}
 
-	print("EDID Block Status = ");
-	puti_32(message[6]);
-	newline();
+	printf("EDID Block Status = %u\n", message[6]);
 
 	if (message[6] > 0) {
 		return 0;
@@ -218,13 +207,13 @@ volatile void frame_buffer_draw(uint32_t x, uint32_t y, uint32_t color) {
 	//       Something involving floating point operations failing.
 	//       WTF? There are no floating point ops here.
 	if (x >= frame_buffer_width) {
-		puti_with_title_32("Asked to draw (x) = ", x);
-		puti_with_title_32("Frame Buffer Width = ", frame_buffer_width);
+		printf("Asked to draw (x) = %u\n", x);
+		printf("Frame Buffer Width = %u\n", frame_buffer_width);
 		error("x failed");
 	}
 	if (y >= frame_buffer_height) {
-		puti_with_title_32("Asked to draw (y) = ", y);
-		puti_with_title_32("Frame Buffer Height = ", frame_buffer_height);
+		printf("Asked to draw (y) = %u\n", y);
+		printf("Frame Buffer Height = %u\n", frame_buffer_height);
 		error("y failed");
 	}
 	uint32_t pixel_offset = ( x * (frame_buffer_depth >> 3) ) + ( y * frame_buffer_pitch );

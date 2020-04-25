@@ -1,0 +1,77 @@
+[
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/ConsoleIO/ConsoleIO.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/ConsoleIO/ConsoleIO.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/ConsoleIO/ConsoleIO.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Core/Main.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Main.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Main.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Core/Menu.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Menu.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Menu.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Exceptions/Exceptions.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Exceptions/Exceptions.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Exceptions/Exceptions.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/ARMTimer/ARMTimer.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/ARMTimer/ARMTimer.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/ARMTimer/ARMTimer.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPIO/GPIO.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/GPIO.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/GPIO.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPIO/TrafficLights.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/TrafficLights.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/TrafficLights.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPIO/UART.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/UART.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/UART.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPU/FrameBuffer.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBuffer.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBuffer.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPU/FrameBufferGraphics.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBufferGraphics.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBufferGraphics.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/GPU/Mailbox.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/Mailbox.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/Mailbox.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/InterruptController/InterruptController.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/InterruptController/InterruptController.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/InterruptController/InterruptController.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Peripherals/SystemTimer/SystemTimer.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/SystemTimer/SystemTimer.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/SystemTimer/SystemTimer.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/Scheduler/Threading.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/Scheduler/Threading.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/Scheduler/Threading.c"
+},
+{
+  "directory": "/Users/xbhatnag/Projects/XyOS/Kernel/build",
+  "command": "/usr/local/bin/aarch64-none-elf-gcc-7.2.0  -I/Users/xbhatnag/Projects/XyOS/Kernel/Headers  -Wall -g -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -std=gnu11 -o CMakeFiles/Kernel.dir/Source/VirtualMemory/VirtualMemory.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/Source/VirtualMemory/VirtualMemory.c",
+  "file": "/Users/xbhatnag/Projects/XyOS/Kernel/Source/VirtualMemory/VirtualMemory.c"
+}
+]

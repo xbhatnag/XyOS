@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 import glob
 import os
 import sys
@@ -83,46 +85,23 @@ def find_device():
     return devices[0]
 
 def screen(device_fd):
-    return os.system("screen " + device_fd + " 115200") == 0
-
-def make_kernel():
-    return os.system("cd ./Kernel && make") == 0
-
-def make_bootloader():
-    return os.system("cd ./Bootloader && make") == 0
-
-def clean_bootloader_output():
-    return os.system("cd ./Bootloader && make clean") == 0
-
-def clean_kernel_output():
-    return os.system("cd ./Kernel && make clean") == 0
-
-def clean_all_output():
-    return clean_bootloader_output() and clean_kernel_output()
+    return os.system("screen -U " + device_fd + " 115200") == 0
 
 def deploy(device_fd):
-    bootloader_img = "./Bootloader/Bootloader.img"
-    kernel_img = "./Kernel/Kernel.img"
-    return make_bootloader() and send_to_device(bootloader_img, device_fd) and screen(device_fd) and make_kernel() and send_to_device(kernel_img, device_fd) and screen(device_fd)
+    kernel_img = "./Kernel/build/Kernel.img"
+    return send_to_device(kernel_img, device_fd) and screen(device_fd)
 
 def main_menu(device_fd):
     print("MAIN MENU")
-    print("1. Deploy to device")
-    print("2. Make all")
-    print("3. Cleanup build output")
-    print("4. Screen device")
-    print("5. Exit")
+    print("1. Deploy kernel")
+    print("2. Screen device")
+    print("3. Exit")
     choice = int(input("Choose an option -> "))
     if choice == 1:
         deploy(device_fd)
     elif choice == 2:
-        make_bootloader()
-        make_kernel()
-    elif choice == 3:
-        clean_all_output()
-    elif choice == 4:
         screen(device_fd)
-    elif choice == 5:
+    elif choice == 3:
         sys.exit(0)
     else:
         print("Invalid choice!")

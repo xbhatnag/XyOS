@@ -19,40 +19,11 @@ extern uint64_t interrupt_status_1();
 void exception_details_1() {
 	// Print exception details
 	println("######### EXCEPTION #########");
-	println("Exception Level\t\t\t1");
-
-	// Interrupt Status
-	uint64_t isr = interrupt_status_1();
-	print("Interrupt Status (Bits)\t\t");
-	pretty_putb_64(isr);
-	newline();
-
-	puth_with_title_64("Interrupt Status (Hex)\t\t", isr);
-
-	// Exception Syndrome
-	uint64_t esr = exception_syndrome_1();
-	print("Exception Syndrome (Bits)\t");
-	pretty_putb_64(esr);
-	newline();
-
-	puth_with_title_64("Exception Syndrome (Hex)\t", esr);
-
-	// Exception Link
-	uint64_t elr = exception_link_1();
-	print("Exception Link (Bits)\t\t");
-	pretty_putb_64(elr);
-	newline();
-
-	puth_with_title_64("Exception Link (Hex)\t\t", elr);
-
-	// Saved Program State
-	uint64_t sps = saved_program_state_1();
-	print("Saved Program State (Bits)\t");
-	pretty_putb_64(sps);
-	newline();
-
-	puth_with_title_64("Saved Program State (Hex)\t", sps);
-
+	println("Exception Level: 1");
+	printf("Interrupt Status: %x\n", interrupt_status_1());
+	printf("Exception Syndrome: %x\n", exception_syndrome_1());
+	printf("Exception Link: %x\n", exception_link_1());
+	printf("Saved Program State: %x\n", saved_program_state_1());
 	println("#############################");
 }
 
@@ -76,7 +47,7 @@ void exception_handler_1() {
 }
 
 // Unrecoverable error has occurred
-void error(char* msg) {
+_Noreturn void error(char* msg) {
 	println("########### ERROR ###########");
 	println(msg);
 	println("#############################");

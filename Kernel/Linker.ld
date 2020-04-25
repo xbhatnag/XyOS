@@ -1,7 +1,7 @@
 SECTIONS
 {
     . = 0xFFFF0000000E0000;
-    __kernel_start = .;
+    __start = .;
     .text : { KEEP(*(.text.boot)) *(.text) }
     .rodata : { *(.rodata) }
     .data : { *(.data) }
@@ -11,7 +11,7 @@ SECTIONS
         *(.bss)
         __bss_end = .;
     }
-    __kernel_end = .;
+    __end = .;
 
    /DISCARD/ : { *(.comment) *(.gnu*) *(.note*) *(.eh_frame*) }
 }

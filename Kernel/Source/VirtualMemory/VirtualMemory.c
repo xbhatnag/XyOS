@@ -3,10 +3,10 @@
 #include "Mailbox.h"
 #include "Exceptions.h"
 
-extern uint64_t __kernel_start, __kernel_end;
+extern uint64_t __start, __end;
 
-uintptr_t kernel_start = (uintptr_t) &__kernel_start;
-uintptr_t kernel_end = (uintptr_t) &__kernel_end;
+uintptr_t kernel_start = (uintptr_t) &__start;
+uintptr_t kernel_end = (uintptr_t) &__end;
 
 uintptr_t kernel_l1_page_table_begin;
 uintptr_t kernel_l1_page_table_end;
@@ -69,20 +69,20 @@ void measure_page_tables() {
 	kernel_lower_l3_page_table_begin = align_64_kb(kernel_lower_l2_page_table_end);
 	kernel_lower_l3_page_table_end = kernel_lower_l3_page_table_begin + L3_TABLE_SIZE;
 
-	println(           "   #########################################################");
-	puth_with_title_64("   # Kernel Start Address             = ", kernel_start);
-	puth_with_title_64("   # Kernel End Address               = ", kernel_end);
-	puth_with_title_64("   # Kernel L1 Page Table Begin       = ", kernel_l1_page_table_begin);
-	puth_with_title_64("   # Kernel L1 Page Table End         = ", kernel_l1_page_table_end);
-	puth_with_title_64("   # Kernel Upper L2 Page Table Begin = ", kernel_upper_l2_page_table_begin);
-	puth_with_title_64("   # Kernel Upper L2 Page Table End   = ", kernel_upper_l2_page_table_end);
-	puth_with_title_64("   # Kernel Upper L3 Page Table Begin = ", kernel_upper_l3_page_table_begin);
-	puth_with_title_64("   # Kernel Upper L3 Page Table End   = ", kernel_upper_l3_page_table_end);
-	puth_with_title_64("   # Kernel Lower L2 Page Table Begin = ", kernel_lower_l2_page_table_begin);
-	puth_with_title_64("   # Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
-	puth_with_title_64("   # Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
-	puth_with_title_64("   # Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
-	println(           "   #########################################################");
+	println("   #########################################################");
+	printf("   # Kernel Start Address             = %x\n", kernel_start);
+	printf("   # Kernel End Address               = %x\n", kernel_end);
+	printf("   # Kernel L1 Page Table Begin       = %x\n", kernel_l1_page_table_begin);
+	printf("   # Kernel L1 Page Table End         = %x\n", kernel_l1_page_table_end);
+	printf("   # Kernel Upper L2 Page Table Begin = %x\n", kernel_upper_l2_page_table_begin);
+	printf("   # Kernel Upper L2 Page Table End   = %x\n", kernel_upper_l2_page_table_end);
+	printf("   # Kernel Upper L3 Page Table Begin = %x\n", kernel_upper_l3_page_table_begin);
+	printf("   # Kernel Upper L3 Page Table End   = %x\n", kernel_upper_l3_page_table_end);
+	printf("   # Kernel Lower L2 Page Table Begin = %x\n", kernel_lower_l2_page_table_begin);
+	printf("   # Kernel Lower L2 Page Table End   = %x\n", kernel_lower_l2_page_table_end);
+	printf("   # Kernel Lower L3 Page Table Begin = %x\n", kernel_lower_l3_page_table_begin);
+	printf("   # Kernel Lower L3 Page Table End   = %x\n", kernel_lower_l3_page_table_end);
+	println("   #########################################################");
 }
 
 void measure_top_of_physical_memory() {
@@ -136,13 +136,13 @@ uintptr_t allocate_from_lower_l3(uintptr_t paddr_start, uint32_t len) {
 	// TODO: This math is hacky and I don't like it. Find a better way!									
 	uintptr_t vaddr_start = 0xFFFFFFFFFFFF0000 - ((kernel_lower_l3_page_table_num_pages_used - 1) * PAGE_SIZE);
 
-	println(           "   #####################################################");
-	puti_with_title_32("   # Allocation Size            = ", len);
-	puth_with_title_64("   # Physical Address Start     = ", paddr_start);
-	puti_with_title_32("   # Number of Pages Required   = ", num_pages_required);
-	puth_with_title_64("   # Last Page Physical Address = ", last_page_paddr);
-	puth_with_title_64("   # Virtual Address Start      = ", vaddr_start);
-	println(           "   #####################################################");
+	println("   #####################################################");
+	printf("   # Allocation Size            = %u\n", len);
+	printf("   # Physical Address Start     = %x\n", paddr_start);
+	printf("   # Number of Pages Required   = %u\n", num_pages_required);
+	printf("   # Last Page Physical Address = %x\n", last_page_paddr);
+	printf("   # Virtual Address Start      = %x\n", vaddr_start);
+	println("   #####################################################");
 
 	return vaddr_start;
 }

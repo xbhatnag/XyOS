@@ -13,12 +13,12 @@
 void mailbox_write(uint32_t* address);
 void mailbox_wait_read();
 void mailbox_turn_led_on();
-uint32_t mailbox_get_arm_memory_size();
-uint32_t mailbox_get_vc_memory_size();
-uint32_t mailbox_get_firmware_revision();
-uint32_t mailbox_get_board_model();
-uint32_t mailbox_get_board_revision();
+uint64_t mailbox_get_arm_memory_size();
+uint64_t mailbox_get_vc_memory_size();
+uint64_t mailbox_get_firmware_revision();
+uint64_t mailbox_get_board_model();
+uint64_t mailbox_get_board_revision();
 void mailbox_print_all_clocks();
-uint32_t mailbox_get_system_temp();
+uint64_t mailbox_get_system_temp();
 
 #endif

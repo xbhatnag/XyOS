@@ -1,0 +1,8 @@
+{
+    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "files.exclude": {
+        ".vscode": true,
+        "**/*.o": true,
+        "build": true
+    }
+}

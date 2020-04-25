@@ -6,6 +6,6 @@
 
 void threading_init();
 void thread_switch();
-
+void thread_0();
 
 #endif

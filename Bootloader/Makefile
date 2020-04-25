@@ -5,12 +5,12 @@ OBJCOPY		= $(TOOLCHAIN)-objcopy
 
 # C Variables
 C_FLAGS		= -Wall -O3 -ffreestanding -nostartfiles -IHeaders -mcpu=cortex-a53+nofp
-C_FILES		= $(shell find . -name "*.c")
+C_FILES		= $(shell find ./Source -name "*.c")
 C_OBJECTS	= $(C_FILES:.c=.o)
 
 # Assembly Variables
 ASM_FLAGS	=
-ASM_FILES	= $(shell find . -name "*.S")
+ASM_FILES	= $(shell find ./Source -name "*.S")
 ASM_OBJECTS	= $(ASM_FILES:.S=.o)
 
 # Linker Variables

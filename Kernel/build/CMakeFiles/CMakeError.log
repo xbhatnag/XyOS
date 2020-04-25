@@ -1,0 +1,367 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_fae66/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_fae66.dir/build.make CMakeFiles/cmTC_fae66.dir/build
+Building C object CMakeFiles/cmTC_fae66.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_fae66.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_fae66
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fae66.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fae66.dir/testCCompiler.c.o  -o cmTC_fae66 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_fae66] Error 1
+make: *** [cmTC_fae66/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_dbc94/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_dbc94.dir/build.make CMakeFiles/cmTC_dbc94.dir/build
+Building C object CMakeFiles/cmTC_dbc94.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_dbc94.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_dbc94
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dbc94.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_dbc94.dir/testCCompiler.c.o  -o cmTC_dbc94 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_dbc94] Error 1
+make: *** [cmTC_dbc94/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_8ccc9/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_8ccc9.dir/build.make CMakeFiles/cmTC_8ccc9.dir/build
+Building C object CMakeFiles/cmTC_8ccc9.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_8ccc9.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_8ccc9
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ccc9.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_8ccc9.dir/testCCompiler.c.o  -o cmTC_8ccc9 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_8ccc9] Error 1
+make: *** [cmTC_8ccc9/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_1c637/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_1c637.dir/build.make CMakeFiles/cmTC_1c637.dir/build
+Building C object CMakeFiles/cmTC_1c637.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_1c637.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_1c637
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c637.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_1c637.dir/testCCompiler.c.o  -o cmTC_1c637 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_1c637] Error 1
+make: *** [cmTC_1c637/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_3a44b/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_3a44b.dir/build.make CMakeFiles/cmTC_3a44b.dir/build
+Building C object CMakeFiles/cmTC_3a44b.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_3a44b.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_3a44b
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a44b.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_3a44b.dir/testCCompiler.c.o  -o cmTC_3a44b 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_3a44b] Error 1
+make: *** [cmTC_3a44b/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_fae44/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_fae44.dir/build.make CMakeFiles/cmTC_fae44.dir/build
+Building C object CMakeFiles/cmTC_fae44.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_fae44.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_fae44
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fae44.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_fae44.dir/testCCompiler.c.o  -o cmTC_fae44 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_fae44] Error 1
+make: *** [cmTC_fae44/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_96b0e/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_96b0e.dir/build.make CMakeFiles/cmTC_96b0e.dir/build
+Building C object CMakeFiles/cmTC_96b0e.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_96b0e.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_96b0e
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_96b0e.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_96b0e.dir/testCCompiler.c.o  -o cmTC_96b0e 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_96b0e] Error 1
+make: *** [cmTC_96b0e/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0a8bd/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_0a8bd.dir/build.make CMakeFiles/cmTC_0a8bd.dir/build
+Building C object CMakeFiles/cmTC_0a8bd.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_0a8bd.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_0a8bd
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a8bd.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0a8bd.dir/testCCompiler.c.o  -o cmTC_0a8bd 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_0a8bd] Error 1
+make: *** [cmTC_0a8bd/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ba357/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_ba357.dir/build.make CMakeFiles/cmTC_ba357.dir/build
+Building C object CMakeFiles/cmTC_ba357.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_ba357.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_ba357
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba357.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ba357.dir/testCCompiler.c.o  -o cmTC_ba357 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_ba357] Error 1
+make: *** [cmTC_ba357/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Determining if the C compiler works failed with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_1538f/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_1538f.dir/build.make CMakeFiles/cmTC_1538f.dir/build
+Building C object CMakeFiles/cmTC_1538f.dir/testCCompiler.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cmTC_1538f.dir/testCCompiler.c.o   -c /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_1538f
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1538f.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_1538f.dir/testCCompiler.c.o  -o cmTC_1538f 
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTC_1538f] Error 1
+make: *** [cmTC_1538f/fast] Error 2
+
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/local/bin/aarch64-none-elf-gcc-7.2.0 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+
+Detecting C compiler ABI info failed to compile with the following output:
+Change Dir: /Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c3774/fast && /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_c3774.dir/build.make CMakeFiles/cmTC_c3774.dir/build
+Building C object CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -v -Wl,-v -o CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.17.1/share/cmake/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/local/bin/aarch64-none-elf-gcc-7.2.0
+Target: aarch64-none-elf
+Configured with: /Volumes/aarch64-build/.build/aarch64-none-elf/src/gcc/configure --build=x86_64-build_apple-darwin15.6.0 --host=x86_64-build_apple-darwin15.6.0 --target=aarch64-none-elf --prefix=/Volumes/rpi3-xtools/aarch64-none-elf --with-local-prefix=/Volumes/rpi3-xtools/aarch64-none-elf/aarch64-none-elf --without-headers --with-newlib --enable-threads=no --disable-shared --with-cpu=cortex-a53 --disable-__cxa_atexit --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --with-gmp=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-mpfr=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-mpc=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-isl=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --enable-lto --enable-target-optspace --disable-nls --disable-multilib --enable-languages=c
+Thread model: single
+gcc version 7.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk' '-v' '-o' 'CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=cortex-a53' '-mlittle-endian' '-mabi=lp64'
+ /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/cc1 -quiet -v -iprefix /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk /usr/local/Cellar/cmake/3.17.1/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mcpu=cortex-a53 -mlittle-endian -mabi=lp64 -auxbase-strip CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o -version -o /var/folders/g1/s6n6rv1n4w7fb09m4d482dt80000gn/T//ccl5NEik.s
+GNU C11 (GCC) version 7.2.0 (aarch64-none-elf)
+	compiled by GNU C version 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.42.1), GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/sys-include"
+ignoring nonexistent directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/include"
+ignoring duplicate directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/7.2.0/include"
+ignoring duplicate directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/7.2.0/include-fixed"
+ignoring nonexistent directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/sys-include"
+ignoring nonexistent directory "/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/../../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/include
+ /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/include-fixed
+End of search list.
+GNU C11 (GCC) version 7.2.0 (aarch64-none-elf)
+	compiled by GNU C version 4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.42.1), GMP version 6.1.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 857054d596615f94a0674f5ed9020317
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk' '-v' '-o' 'CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=cortex-a53' '-mlittle-endian' '-mabi=lp64'
+ /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/as -EL -march=armv8-a+crc -mabi=lp64 -o CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o /var/folders/g1/s6n6rv1n4w7fb09m4d482dt80000gn/T//ccl5NEik.s
+COMPILER_PATH=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/
+LIBRARY_PATH=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk' '-v' '-o' 'CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o' '-c' '-mcpu=cortex-a53' '-mlittle-endian' '-mabi=lp64'
+Linking C executable cmTC_c3774
+/usr/local/Cellar/cmake/3.17.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c3774.dir/link.txt --verbose=1
+/usr/local/bin/aarch64-none-elf-gcc-7.2.0   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o  -o cmTC_c3774 
+Using built-in specs.
+COLLECT_GCC=/usr/local/bin/aarch64-none-elf-gcc-7.2.0
+COLLECT_LTO_WRAPPER=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/lto-wrapper
+Target: aarch64-none-elf
+Configured with: /Volumes/aarch64-build/.build/aarch64-none-elf/src/gcc/configure --build=x86_64-build_apple-darwin15.6.0 --host=x86_64-build_apple-darwin15.6.0 --target=aarch64-none-elf --prefix=/Volumes/rpi3-xtools/aarch64-none-elf --with-local-prefix=/Volumes/rpi3-xtools/aarch64-none-elf/aarch64-none-elf --without-headers --with-newlib --enable-threads=no --disable-shared --with-cpu=cortex-a53 --disable-__cxa_atexit --disable-libgomp --disable-libmudflap --disable-libmpx --disable-libssp --disable-libquadmath --disable-libquadmath-support --with-gmp=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-mpfr=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-mpc=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --with-isl=/Volumes/aarch64-build/.build/aarch64-none-elf/buildtools --enable-lto --enable-target-optspace --disable-nls --disable-multilib --enable-languages=c
+Thread model: single
+gcc version 7.2.0 (GCC) 
+COMPILER_PATH=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/
+LIBRARY_PATH=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/:/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/
+COLLECT_GCC_OPTIONS='-isysroot' '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk' '-v' '-o' 'cmTC_c3774' '-mcpu=cortex-a53' '-mlittle-endian' '-mabi=lp64'
+ /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/collect2 -plugin /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/liblto_plugin.so -plugin-opt=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/g1/s6n6rv1n4w7fb09m4d482dt80000gn/T//cc25azQF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -EL -X -maarch64elf -o cmTC_c3774 /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crti.o /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtbegin.o crt0.o -L/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0 -L/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtend.o /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtn.o
+collect2 version 7.2.0
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld -plugin /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/liblto_plugin.so -plugin-opt=/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../libexec/gcc/aarch64-none-elf/7.2.0/lto-wrapper -plugin-opt=-fresolution=/var/folders/g1/s6n6rv1n4w7fb09m4d482dt80000gn/T//cc25azQF.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -EL -X -maarch64elf -o cmTC_c3774 /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crti.o /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtbegin.o crt0.o -L/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0 -L/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_c3774.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtend.o /usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/crtn.o
+GNU ld (GNU Binutils) 2.29.1/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find crt0.o: No such file or directory
+/usr/local/Cellar/aarch64-none-elf/7.2.0/toolchain/bin/../lib/gcc/aarch64-none-elf/7.2.0/../../../../aarch64-none-elf/bin/ld.bfd: cannot find -lc
+collect2: error: ld returned 1 exit status
+
+make[1]: *** [cmTC_c3774] Error 1
+make: *** [cmTC_c3774/fast] Error 2
+
+
+
+

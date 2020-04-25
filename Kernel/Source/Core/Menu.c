@@ -80,13 +80,12 @@ void main_menu_choice(char c){
 	}
 }
 
-void main_menu() {
-	println("## Welcome to XyOS");
+_Noreturn void main_menu() {
 	newline();
-	println("MAIN MENU");
+	println("\U0001F600 Welcome to XyOS");
 	while(1) {
 		// Wait for input!
-		print("> ");
+		putstr("> ");
 
 		// Get character
 		char input = getc();

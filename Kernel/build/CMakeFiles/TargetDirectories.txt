@@ -1,0 +1,3 @@
+/Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/rebuild_cache.dir
+/Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/edit_cache.dir
+/Users/xbhatnag/Projects/XyOS/Kernel/build/CMakeFiles/Kernel.dir

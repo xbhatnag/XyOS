@@ -45,7 +45,7 @@ void mailbox_turn_led_on() {
 	}
 }
 
-uint32_t mailbox_get_arm_memory_size() {
+uint64_t mailbox_get_arm_memory_size() {
 	uint32_t __attribute__((aligned(16))) message[8];
 	// message header
 	message[0] = sizeof(message);	// Message Size
@@ -80,7 +80,7 @@ uint32_t mailbox_get_arm_memory_size() {
 	return message[6];
 }
 
-uint32_t mailbox_get_vc_memory_size() {
+uint64_t mailbox_get_vc_memory_size() {
 	uint32_t __attribute__((aligned(16))) message[8];
 	// message header
 	message[0] = sizeof(message);	// Message Size
@@ -111,7 +111,7 @@ uint32_t mailbox_get_vc_memory_size() {
 	return message[6];
 }
 
-uint32_t mailbox_get_firmware_revision() {
+uint64_t mailbox_get_firmware_revision() {
 	uint32_t __attribute__((aligned(16))) message[7];
 	// message header
 	message[0] = sizeof(message);	// Message Size
@@ -141,7 +141,7 @@ uint32_t mailbox_get_firmware_revision() {
 	return message[5];
 }
 
-uint32_t mailbox_get_board_model() {
+uint64_t mailbox_get_board_model() {
 	uint32_t __attribute__((aligned(16))) message[7];
 	// message header
 	message[0] = sizeof(message);	// Message Size
@@ -171,7 +171,7 @@ uint32_t mailbox_get_board_model() {
 	return message[5];
 }
 
-uint32_t mailbox_get_board_revision() {
+uint64_t mailbox_get_board_revision() {
 	uint32_t __attribute__((aligned(16))) message[7];
 	// message header
 	message[0] = sizeof(message);	// Message Size
@@ -230,9 +230,7 @@ void mailbox_print_clock_current_frequency(uint32_t id) {
 	}
 
 	// Print clock frequency
-	print("(");
-	puti_32(message[6]/1000);
-	print(" KHz) ");
+	printf("(%u KHz) ", message[6]/1000);
 }
 
 void mailbox_print_clock_state(uint32_t id) {
@@ -272,27 +270,27 @@ void mailbox_print_clock_state(uint32_t id) {
 	}
 
 	if (enabled) {
-		print("(On) ");
+		putstr("(On) ");
 	} else {
-		print("(Off) ");
+		putstr("(Off) ");
 	}
 }
 
 void mailbox_print_clock_name(uint32_t id) {
 	switch(id) {
-		case 1: print("(EMMC)"); break;
-		case 2: print("(UART)"); break;
-		case 3: print("(ARM)"); break;
-		case 4: print("(CORE)"); break;
-		case 5: print("(V3D)"); break;
-		case 6: print("(H264)"); break;
-		case 7: print("(ISP)"); break;
-		case 8: print("(SDRAM)"); break;
-		case 9: print("(PIXEL)"); break;
-		case 10: print("(PWM)"); break;
+		case 1: putstr("(EMMC)"); break;
+		case 2: putstr("(UART)"); break;
+		case 3: putstr("(ARM)"); break;
+		case 4: putstr("(CORE)"); break;
+		case 5: putstr("(V3D)"); break;
+		case 6: putstr("(H264)"); break;
+		case 7: putstr("(ISP)"); break;
+		case 8: putstr("(SDRAM)"); break;
+		case 9: putstr("(PIXEL)"); break;
+		case 10: putstr("(PWM)"); break;
 		default: error("Unknown clock. Cannot retrieve name.");
 	}
-	print(" ");
+	putc(' ');
 }
 
 void mailbox_print_all_clocks() {
@@ -323,18 +321,14 @@ void mailbox_print_all_clocks() {
 	for (int i = 0; i < MAILBOX_NUM_CLOCKS; i++) {
 		uint32_t parent_id = message[5+(i*2)];
 		uint32_t id = message[5+(i*2)+1];
-		print("Clock ");
-		puti_32(id);
-		print(" -> ");
+		printf("Clock %u -> ", id);
 
 		mailbox_print_clock_name(id);
 
 		if (parent_id == 0) {
-			print("(Base) ");
+			putstr("(Base) ");
 		} else {
-			print("(Parent ");
-			puti_32(parent_id);
-			print(") ");
+			printf("(Parent %u) ", parent_id);
 		}
 
 		mailbox_print_clock_state(id);
@@ -344,7 +338,7 @@ void mailbox_print_all_clocks() {
 	}
 }
 
-uint32_t mailbox_get_system_temp() {
+uint64_t mailbox_get_system_temp() {
 	uint32_t __attribute__((aligned(16))) message[8];
 	// message header
 	message[0] = sizeof(message);	// Message Size
