@@ -3,7 +3,7 @@
 #include "Mailbox.h"
 #include "ARMTimer.h"
 #include "SystemTimer.h"
-#include "ThreadHandling.h"
+#include "Threading.h"
 
 // Exception level 2 handling
 extern uint64_t exception_syndrome_2();
@@ -63,6 +63,7 @@ void exception_handler_1() {
 		if (arm_timer_was_interrupted()) {
 			// ARM timer corresponds to scheduler work
 			thread_switch();
+    		arm_timer_ack_interrupt();
 		} else {
 			exception_details_1();
 			error("Unknown H/W exception");

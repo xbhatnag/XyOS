@@ -4,6 +4,7 @@
 #include "Exceptions.h"
 #include "VirtualMemory.h"
 
+uint32_t is_frame_buffer_ready = 0;
 extern uint64_t test_translation(uint64_t value);
 
 void frame_buffer_init(uint32_t desired_width, uint32_t desired_height) {
@@ -129,21 +130,21 @@ void frame_buffer_init(uint32_t desired_width, uint32_t desired_height) {
 	frame_buffer_virtual_base_address = (unsigned char*) base_address;
 
 
-	println("   ╔══════════════════════════════════════════════════════════════╗");
-	print("   ║ Frame Buffer Resolution = ");
+	println(           "   ################################################################");
+	print(             "   # Frame Buffer Resolution                 = ");
 	puti_32(frame_buffer_width);
 	print(" x ");
 	puti_32(frame_buffer_height);
 	newline();
 
-	puth_with_title_32("   ║ Frame Buffer Size = ", frame_buffer_size);
-	puth_with_title_32("   ║ Frame Buffer Physical Base Address = ", frame_buffer_physical_base_address);
-	puth_with_title_32("   ║ Frame Buffer Physical End Address = ", frame_buffer_physical_base_address + frame_buffer_size - 1);
-	puth_with_title_64("   ║ Frame Buffer Virtual Base Address = ", base_address);
-	puth_with_title_64("   ║ Frame Buffer Virtual End Address = ", end_address);
-	puth_with_title_64("   ║ Test Translation (Virtual Base Address) = ", test_translation(base_address));
-	puth_with_title_64("   ║ Test Translation (Virtual End Address) = ", test_translation(end_address));
-	println("   ╚══════════════════════════════════════════════════════════════╝");
+	puti_with_title_32("   # Frame Buffer Size                       = ", frame_buffer_size);
+	puth_with_title_32("   # Frame Buffer Physical Base Address      = ", frame_buffer_physical_base_address);
+	puth_with_title_32("   # Frame Buffer Physical End Address       = ", frame_buffer_physical_base_address + frame_buffer_size - 1);
+	puth_with_title_64("   # Frame Buffer Virtual Base Address       = ", base_address);
+	puth_with_title_64("   # Frame Buffer Virtual End Address        = ", end_address);
+	puth_with_title_64("   # Test Translation (Virtual Base Address) = ", test_translation(base_address));
+	puth_with_title_64("   # Test Translation (Virtual End Address)  = ", test_translation(end_address));
+	println(           "   ################################################################");
 
 	// From this point on, all output is directed to the Frame Buffer
 	is_frame_buffer_ready = 1;
@@ -212,11 +213,28 @@ uint32_t frame_buffer_get_edid_block(uint32_t block_num) {
 	return 1;
 }
 
-void frame_buffer_draw(uint64_t x, uint64_t y, uint32_t color) {
-	uint64_t pixel_offset = ( x * (frame_buffer_depth >> 3) ) + ( y * frame_buffer_pitch );
+volatile void frame_buffer_draw(uint32_t x, uint32_t y, uint32_t color) {
+	// TODO: Figure out why the math here is wrong...
+	//       Something involving floating point operations failing.
+	//       WTF? There are no floating point ops here.
+	if (x >= frame_buffer_width) {
+		puti_with_title_32("Asked to draw (x) = ", x);
+		puti_with_title_32("Frame Buffer Width = ", frame_buffer_width);
+		error("x failed");
+	}
+	if (y >= frame_buffer_height) {
+		puti_with_title_32("Asked to draw (y) = ", y);
+		puti_with_title_32("Frame Buffer Height = ", frame_buffer_height);
+		error("y failed");
+	}
+	uint32_t pixel_offset = ( x * (frame_buffer_depth >> 3) ) + ( y * frame_buffer_pitch );
 
-	frame_buffer_virtual_base_address[pixel_offset+2] = color >> 16;			// R
-	frame_buffer_virtual_base_address[pixel_offset+1] = color >> 8 & 0xFF;		// G
-	frame_buffer_virtual_base_address[pixel_offset] = color & 0xFF;				// B
-	frame_buffer_virtual_base_address[pixel_offset+3] = 0xFF;					// A
+	unsigned char R = color & 0xFF;
+	unsigned char G = color >> 8 & 0xFF;
+	unsigned char B = color >> 16 & 0xFF;
+	unsigned char A = 0xFF;
+	frame_buffer_virtual_base_address[pixel_offset]   = R;
+	frame_buffer_virtual_base_address[pixel_offset+1] = G;
+	frame_buffer_virtual_base_address[pixel_offset+2] = B;
+	frame_buffer_virtual_base_address[pixel_offset+3] = A;
 }

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="XyOS"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/xbhatnag/Projects/XyOS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/xbhatnag/Projects/XyOS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/xbhatnag/Projects/XyOS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="XyOS">
+				<Option output="/Users/xbhatnag/Projects/XyOS/cmake-build-debug/XyOS" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xbhatnag/Projects/XyOS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers"/>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/Kernel/Headers"/>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/SerialClient"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 XyOS"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="XyOS/fast">
+				<Option output="/Users/xbhatnag/Projects/XyOS/cmake-build-debug/XyOS" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/xbhatnag/Projects/XyOS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers"/>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/Kernel/Headers"/>
+					<Add directory="/Users/xbhatnag/Projects/XyOS/SerialClient"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 XyOS/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/xbhatnag/Projects/XyOS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/Exceptions.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/GPIO.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/KernelLoader.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/Mailbox.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/Peripherals.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/UART.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Headers/VirtualMemory.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/ConsoleIO/ConsoleIO.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Core/KernelLoader.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Core/Main.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Exceptions/Exceptions.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Peripherals/GPIO/GPIO.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Peripherals/GPIO/UART.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/Peripherals/GPU/Mailbox.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Bootloader/Source/VirtualMemory/VirtualMemory.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/ARMTimer.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/ConsoleFont.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/ConsoleIO.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/Exceptions.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/FrameBuffer.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/FrameBufferGraphics.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/GPIO.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/InterruptController.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/Mailbox.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/Menu.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/Peripherals.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/SystemTimer.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/Threading.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/TrafficLights.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/UART.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Headers/VirtualMemory.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/ConsoleIO/ConsoleIO.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Main.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Core/Menu.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Exceptions/Exceptions.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/ARMTimer/ARMTimer.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/GPIO.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/TrafficLights.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPIO/UART.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBuffer.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/FrameBufferGraphics.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/GPU/Mailbox.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/InterruptController/InterruptController.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Peripherals/SystemTimer/SystemTimer.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/Scheduler/Threading.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/Kernel/Source/VirtualMemory/VirtualMemory.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/GPIO.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/GPIO.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/Peripherals.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/SerialClient.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/UART.c">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/SerialClient/UART.h">
+			<Option target="XyOS"/>
+		</Unit>
+		<Unit filename="/Users/xbhatnag/Projects/XyOS/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

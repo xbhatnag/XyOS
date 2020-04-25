@@ -16,6 +16,7 @@ uintptr_t kernel_upper_l2_page_table_end;
 
 uintptr_t kernel_upper_l3_page_table_begin;
 uintptr_t kernel_upper_l3_page_table_current;
+uint32_t kernel_upper_l3_page_table_num_pages_used;
 uintptr_t kernel_upper_l3_page_table_end;
 
 uintptr_t kernel_lower_l2_page_table_begin;
@@ -23,10 +24,8 @@ uintptr_t kernel_lower_l2_page_table_end;
 
 uintptr_t kernel_lower_l3_page_table_begin;
 uintptr_t kernel_lower_l3_page_table_current;
+uint32_t kernel_lower_l3_page_table_num_pages_used;
 uintptr_t kernel_lower_l3_page_table_end;
-
-uintptr_t kernel_stack_top;
-uintptr_t kernel_stack_bottom;
 
 uintptr_t align_64_kb(uintptr_t address) {
 	uint64_t remainder = address % KB_64;
@@ -48,6 +47,8 @@ uint64_t create_device_block_descriptor(uintptr_t address) {
 }
 
 void measure_page_tables() {
+	// TODO: The linker reports a different end of kernel than what
+	//       was calculated by the bootloader. Off by approximately 0xf8 bytes.
 	// The linker gives us the address of the end of the kernel.
 	kernel_l1_page_table_begin = align_64_kb(kernel_end);
 	kernel_l1_page_table_end = kernel_l1_page_table_begin + L1_TABLE_SIZE;
@@ -68,71 +69,86 @@ void measure_page_tables() {
 	kernel_lower_l3_page_table_begin = align_64_kb(kernel_lower_l2_page_table_end);
 	kernel_lower_l3_page_table_end = kernel_lower_l3_page_table_begin + L3_TABLE_SIZE;
 
-	// Reserve 64KB for Kernel Stack
-	kernel_stack_top = align_64_kb(kernel_lower_l3_page_table_end);
-	kernel_stack_bottom = kernel_stack_top + KB_64;
-
-	uint32_t num_pages_used = kernel_stack_bottom / PAGE_SIZE;
-	if (kernel_stack_bottom % PAGE_SIZE) {
-		num_pages_used += 1;
-	}
-
-	println("   ╔═══════════════════════════════════════════════════════╗");
-	puth_with_title_64("   ║ Kernel Start Address             = ", kernel_start);
-	puth_with_title_64("   ║ Kernel End Address               = ", kernel_end);
-	puth_with_title_64("   ║ Kernel L1 Page Table Begin       = ", kernel_l1_page_table_begin);
-	puth_with_title_64("   ║ Kernel L1 Page Table End         = ", kernel_l1_page_table_end);
-	puth_with_title_64("   ║ Kernel Upper L2 Page Table Begin = ", kernel_upper_l2_page_table_begin);
-	puth_with_title_64("   ║ Kernel Upper L2 Page Table End   = ", kernel_upper_l2_page_table_end);
-	puth_with_title_64("   ║ Kernel Upper L3 Page Table Begin = ", kernel_upper_l3_page_table_begin);
-	puth_with_title_64("   ║ Kernel Upper L3 Page Table End   = ", kernel_upper_l3_page_table_end);
-	puth_with_title_64("   ║ Kernel Lower L2 Page Table Begin = ", kernel_lower_l2_page_table_begin);
-	puth_with_title_64("   ║ Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
-	puth_with_title_64("   ║ Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
-	puth_with_title_64("   ║ Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
-	puth_with_title_64("   ║ Kernel Stack Top                 = ", kernel_stack_top);
-	puth_with_title_64("   ║ Kernel Stack Bottom              = ", kernel_stack_bottom);
-	println("   ╚═══════════════════════════════════════════════════════╝");
+	println(           "   #########################################################");
+	puth_with_title_64("   # Kernel Start Address             = ", kernel_start);
+	puth_with_title_64("   # Kernel End Address               = ", kernel_end);
+	puth_with_title_64("   # Kernel L1 Page Table Begin       = ", kernel_l1_page_table_begin);
+	puth_with_title_64("   # Kernel L1 Page Table End         = ", kernel_l1_page_table_end);
+	puth_with_title_64("   # Kernel Upper L2 Page Table Begin = ", kernel_upper_l2_page_table_begin);
+	puth_with_title_64("   # Kernel Upper L2 Page Table End   = ", kernel_upper_l2_page_table_end);
+	puth_with_title_64("   # Kernel Upper L3 Page Table Begin = ", kernel_upper_l3_page_table_begin);
+	puth_with_title_64("   # Kernel Upper L3 Page Table End   = ", kernel_upper_l3_page_table_end);
+	puth_with_title_64("   # Kernel Lower L2 Page Table Begin = ", kernel_lower_l2_page_table_begin);
+	puth_with_title_64("   # Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
+	puth_with_title_64("   # Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
+	puth_with_title_64("   # Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
+	println(           "   #########################################################");
 }
 
-void measure_kernel_physical_memory() {
-	uint64_t num_kernel_pages = (kernel_lower_l3_page_table_end - TOP_OF_MEMORY) / PAGE_SIZE;
+void measure_top_of_physical_memory() {
+	uint64_t top_of_physical_memory_num_bytes_used = kernel_lower_l3_page_table_end - TOP_OF_MEMORY;
+	kernel_upper_l3_page_table_num_pages_used = top_of_physical_memory_num_bytes_used / PAGE_SIZE;
 
-	if (kernel_lower_l3_page_table_end % PAGE_SIZE) {
-		num_kernel_pages += 1;
+	if (top_of_physical_memory_num_bytes_used % PAGE_SIZE) {
+		kernel_upper_l3_page_table_num_pages_used += 1;
 	}
 
-	kernel_upper_l3_page_table_current = kernel_upper_l3_page_table_begin + (num_kernel_pages * 8);
+	kernel_upper_l3_page_table_current = kernel_upper_l3_page_table_begin + (kernel_upper_l3_page_table_num_pages_used * 8);
 }
 
-void measure_peripherals_and_kernel_stack() {
-	// How many pages used
-	uint64_t num_pages_skipped = L3_TOTAL_PAGES - (PERIPHERALS_PAGES + 1);
+void measure_peripherals_and_scheduler_stack() {
+	// 1 page used for scheduler stack
+	kernel_lower_l3_page_table_num_pages_used = PERIPHERALS_PAGES + 1;
+	uint64_t num_pages_skipped = L3_TOTAL_PAGES - kernel_lower_l3_page_table_num_pages_used;
 	kernel_lower_l3_page_table_current = kernel_lower_l3_page_table_begin + (num_pages_skipped * 8);
 }
 
-uintptr_t allocate_from_lower_l3(uintptr_t paddr, uint32_t len) {
-	if (paddr != align_64_kb(paddr)) {
+uintptr_t allocate_from_lower_l3(uintptr_t paddr_start, uint32_t len) {
+	if (paddr_start & 0xFFFF) {
 		error("Give aligned addresses when allocating!");
 	}
 
-	// Calculate the physical address of the last page
-	uintptr_t paddr_cur = (paddr + len) & MASK_PHYS_ADDR;
+	uint32_t num_pages_required = len / PAGE_SIZE;
+	if (len % PAGE_SIZE) {
+		num_pages_required += 1;
+	}
 
-	// Work backwards to the first page
-	while(paddr_cur >= paddr) {
+	// Start from the last page that needs to be allocated
+	uintptr_t paddr_cur = paddr_start + ((num_pages_required - 1) * PAGE_SIZE);
+	uintptr_t last_page_paddr = paddr_cur;
+
+	while(paddr_cur >= paddr_start) {
+		// Move the pointer to the current page table entry up by one.
 		kernel_lower_l3_page_table_current -= 8;
+
+		// Make an entry for the current physical address
 		*((uint64_t*)(kernel_lower_l3_page_table_current)) = create_normal_block_descriptor(paddr_cur);
+		
+		// Increment number of pages used
+		kernel_lower_l3_page_table_num_pages_used += 1;
+
+		// Shift the current physical address up by a page
 		paddr_cur -= PAGE_SIZE;
 	}
 
-	uint64_t num_used_pages_in_lower_l3 = (kernel_lower_l3_page_table_end - kernel_lower_l3_page_table_current) >> 3;
+	// TODO: It is possible to overflow the L3 page table. Prevent that from happening!
 
-	return LAST_PAGE_VADDR - ((num_used_pages_in_lower_l3 - 1) * PAGE_SIZE);
+	// TODO: This math is hacky and I don't like it. Find a better way!									
+	uintptr_t vaddr_start = 0xFFFFFFFFFFFF0000 - ((kernel_lower_l3_page_table_num_pages_used - 1) * PAGE_SIZE);
+
+	println(           "   #####################################################");
+	puti_with_title_32("   # Allocation Size            = ", len);
+	puth_with_title_64("   # Physical Address Start     = ", paddr_start);
+	puti_with_title_32("   # Number of Pages Required   = ", num_pages_required);
+	puth_with_title_64("   # Last Page Physical Address = ", last_page_paddr);
+	puth_with_title_64("   # Virtual Address Start      = ", vaddr_start);
+	println(           "   #####################################################");
+
+	return vaddr_start;
 }
 
 void vmem_init() {
 	measure_page_tables();
-	measure_kernel_physical_memory();
-	measure_peripherals_and_kernel_stack();
+	measure_top_of_physical_memory();
+	measure_peripherals_and_scheduler_stack();
 }

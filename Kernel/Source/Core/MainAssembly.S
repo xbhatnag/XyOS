@@ -19,8 +19,3 @@ exception_level:
 	and x0, x0, #12		// Only bits 3 and 2 are relevant
 	lsr x0, x0, #2		// Shift right by 2
 	ret
-
-.global get_stack_ptr
-get_stack_ptr:
-	mov x0, sp
-	ret

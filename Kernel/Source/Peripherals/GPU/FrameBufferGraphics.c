@@ -8,19 +8,42 @@
 uint32_t current_x = 0;
 uint32_t current_y = 0;
 
-void frame_buffer_draw_cross(uint32_t color) {
-	uint64_t box_size = frame_buffer_height;
-	uint64_t line_length = 50;
-	uint64_t y = 0;
-	uint64_t left_x = (frame_buffer_width - frame_buffer_height) / 2;
-	uint64_t right_x = left_x + box_size;
-	for (uint64_t y_offset = 0; y_offset < box_size; y_offset++) {
-		for (uint64_t x_offset = 0; x_offset < line_length; x_offset++) {
-			frame_buffer_draw(left_x + x_offset, y + y_offset, color);
-			frame_buffer_draw(right_x - x_offset, y + y_offset, color);
+// This formula is flawed.
+void frame_buffer_draw_cross(uint32_t x_offset, uint32_t y_offset, uint32_t size, uint32_t line_thickness, uint32_t color) {
+	for (uint32_t y = 0; y < size; y++) {
+		for (uint32_t x = 0; x < line_thickness; x++) {
+			frame_buffer_draw(x_offset + x + y, y_offset + y, color);
+			frame_buffer_draw(x_offset + size - x - y, y_offset + y, color);
 		}
-		left_x += 1;
-		right_x -= 1;
+	}
+}
+
+void frame_buffer_draw_cross_full_screen(uint32_t color) {
+	uint64_t x_offset = (frame_buffer_width - frame_buffer_height) / 2;
+	frame_buffer_draw_cross(
+		x_offset,
+		0,
+		frame_buffer_height,
+		20,
+		color
+	);
+}
+
+void frame_buffer_draw_cross_corner(uint32_t color) {
+	frame_buffer_draw_cross(
+		0,
+		0,
+		100,
+		20,
+		color
+	);
+}
+
+void frame_buffer_draw_square_corner(uint32_t color) {
+	for (uint64_t y = 0; y < 100; y++) {
+		for (uint64_t x = 0; x < 100; x++) {
+			frame_buffer_draw(frame_buffer_width - 100 + x, frame_buffer_height - 100 + y, color);
+		}
 	}
 }
 
@@ -38,9 +61,9 @@ void frame_buffer_clear() {
 	current_y = 0;
 }
 
-void frame_buffer_draw_char(uint64_t x, uint64_t y, uint8_t c, uint32_t color) {
-	for (uint16_t y_offset = 0; y_offset < 16; y_offset++) {
-		for (uint64_t x_offset = 0; x_offset < 8; x_offset++) {
+void frame_buffer_draw_char(uint32_t x, uint32_t y, uint8_t c, uint32_t color) {
+	for (uint32_t y_offset = 0; y_offset < 16; y_offset++) {
+		for (uint32_t x_offset = 0; x_offset < 8; x_offset++) {
 			if ((FONT[c][y_offset] >> (7 - x_offset)) & 0x1) {
 				frame_buffer_draw(x + x_offset, y + y_offset, color);
 			} else {
@@ -66,10 +89,34 @@ void frame_buffer_draw_border(uint32_t color) {
 	}
 }
 
-void frame_buffer_putc(char c, uint32_t color){
+// Prints a number to the bottom right of the screen
+void frame_buffer_puti_64(uint64_t num) {
+	// At most 20 digits
+	unsigned char c[20];
+	uint32_t i = 0;
+
+	do {
+		c[i] = (num % 10) + '0';
+		i+=1;
+		num = num / 10;
+	} while (num != 0 || i == 20);
+
+	for (uint32_t j = 0; j < i; j++) {
+		frame_buffer_draw_char((i - j - 1) * 8, 0, c[j], 0xFF0000);
+	}
+}
+
+void frame_buffer_putc(uint8_t c, uint32_t color){
 	switch (c) {
 		case '\n': {
 			current_y += 16;
+			break;
+		}
+		case '\t': {
+			frame_buffer_putc(' ', 0xFFFFFF);
+			frame_buffer_putc(' ', 0xFFFFFF);
+			frame_buffer_putc(' ', 0xFFFFFF);
+			frame_buffer_putc(' ', 0xFFFFFF);
 			break;
 		}
 		case '\r': {

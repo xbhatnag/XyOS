@@ -1,7 +1,7 @@
 #include "GPIO.h"
 #include "UART.h"
 
-void uart_setup() {
+volatile void uart_setup() {
   register uint32_t r;
 
   // Enable UART
@@ -54,22 +54,22 @@ void uart_setup() {
   *AUX_MU_CNTL_REG = 3;
 }
 
-void uart_output_flush() {
+volatile void uart_output_flush() {
   // Busy wait until transmitter is idle
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x20));
 }
 
-void uart_output(uint32_t letter) {
+volatile void uart_output(uint32_t letter) {
   uart_output_flush();
   *AUX_MU_IO_REG = letter;
 }
 
-void uart_input_flush() {
+volatile void uart_input_flush() {
   // Busy wait until FIFO holds at least 1 symbol
   do {asm volatile("nop");} while (!(*AUX_MU_LSR_REG & 0x1));
 }
 
-uint32_t uart_input() {
+volatile uint32_t uart_input() {
   uart_input_flush();
   return *AUX_MU_IO_REG;
 }

@@ -19,8 +19,8 @@ uintptr_t kernel_lower_l2_page_table_end;
 uintptr_t kernel_lower_l3_page_table_begin;
 uintptr_t kernel_lower_l3_page_table_end;
 
-uintptr_t kernel_stack_top;
-uintptr_t kernel_stack_bottom;
+uintptr_t scheduler_stack_top;
+uintptr_t scheduler_stack_bottom;
 
 extern void set_translation_base_register_1(uintptr_t base_reg);
 extern void enable_translation();
@@ -88,7 +88,7 @@ void reserve_page_tables() {
 	0x0000000000130000
 	Kernel Lower L3 Page Table
 	0x0000000000140000
-	Kernel stack
+	Scheduler stack
 	0x0000000000150000
 	**/
 
@@ -113,14 +113,9 @@ void reserve_page_tables() {
 	kernel_lower_l3_page_table_begin = align_64_kb(kernel_lower_l2_page_table_end);
 	kernel_lower_l3_page_table_end = kernel_lower_l3_page_table_begin + L3_TABLE_SIZE;
 
-	// Reserve 64KB for Kernel Stack
-	kernel_stack_top = align_64_kb(kernel_lower_l3_page_table_end);
-	kernel_stack_bottom = kernel_stack_top + KB_64;
-
-	uint32_t num_pages_used = kernel_stack_bottom / PAGE_SIZE;
-	if (kernel_stack_bottom % PAGE_SIZE) {
-		num_pages_used += 1;
-	}
+	// Reserve a page for scheduler stack
+	scheduler_stack_top = align_64_kb(kernel_lower_l3_page_table_end);
+	scheduler_stack_bottom = scheduler_stack_top + PAGE_SIZE;
 
 	puth_with_title_64("Kernel Start Address             = ", KERNEL_PHYSICAL_START);
 	puth_with_title_64("Kernel End Address               = ", kernel_physical_end);
@@ -134,8 +129,8 @@ void reserve_page_tables() {
 	puth_with_title_64("Kernel Lower L2 Page Table End   = ", kernel_lower_l2_page_table_end);
 	puth_with_title_64("Kernel Lower L3 Page Table Begin = ", kernel_lower_l3_page_table_begin);
 	puth_with_title_64("Kernel Lower L3 Page Table End   = ", kernel_lower_l3_page_table_end);
-	puth_with_title_64("Kernel Stack Top                 = ", kernel_stack_top);
-	puth_with_title_64("Kernel Stack Bottom              = ", kernel_stack_bottom);
+	puth_with_title_64("Scheduler Stack Top              = ", scheduler_stack_top);
+	puth_with_title_64("Scheduler Stack Bottom           = ", scheduler_stack_bottom);
 }
 
 void create_table_entries() {
@@ -152,7 +147,7 @@ void create_table_entries() {
 	*((uint64_t*)(kernel_lower_l2_page_table_end - 8)) = create_table_descriptor(kernel_lower_l3_page_table_begin);
 }
 
-void map_kernel_physical_memory() {
+void map_top_of_physical_memory() {
 	// Map the entire top of physical memory into virtual memory,
 	// upto and including the end of the last l3 page table.
 	uint64_t num_kernel_pages = (kernel_lower_l3_page_table_end - TOP_OF_MEMORY) / PAGE_SIZE;
@@ -161,9 +156,9 @@ void map_kernel_physical_memory() {
 		num_kernel_pages += 1;
 	}
 
-	print("Mapping ");
+	print("Mapping top ");
 	puti_64(num_kernel_pages);
-	print(" pages of kernel physical memory...");
+	print(" pages of physical memory...");
 	newline();
 
 	uintptr_t physical_address = 0x0;
@@ -176,7 +171,7 @@ void map_kernel_physical_memory() {
 	}
 }
 
-void map_peripherals_and_kernel_stack() {
+void map_peripherals_and_scheduler_stack() {
 	// How many pages to skip?
 	uint64_t num_pages_to_skip = L3_TOTAL_PAGES - PERIPHERALS_PAGES - 1;
 	print("Skipping ");
@@ -184,15 +179,17 @@ void map_peripherals_and_kernel_stack() {
 	println(" pages of lower L3 table");
 	uintptr_t current_l3_page_table_entry = kernel_lower_l3_page_table_begin + (num_pages_to_skip * 8);
 
-	// Map Kernel Stack
-	println("Mapping 1 page of kernel stack...");
-	*((uint64_t*)(current_l3_page_table_entry)) = create_normal_block_descriptor(kernel_stack_top);
+	puth_with_title_64("Current lower l3 table position = ", current_l3_page_table_entry);
+
+	// Map scheduler stack
+	println("Mapping 1 page for scheduler stack...");
+	*((uint64_t*)(current_l3_page_table_entry)) = create_normal_block_descriptor(scheduler_stack_top);
 	current_l3_page_table_entry += 8;
 
-	// Map Peripherals
+	// Map peripherals
 	print("Mapping ");
 	puti_64(PERIPHERALS_PAGES);
-	println(" pages of peripherals...");
+	println(" pages for peripherals...");
 
 	uintptr_t physical_address = PERIPHERALS_BASE;
 
@@ -206,15 +203,15 @@ void map_peripherals_and_kernel_stack() {
 void vmem_init() {
 	reserve_page_tables();
 	create_table_entries();
-	map_kernel_physical_memory();
-	map_peripherals_and_kernel_stack();
+	map_top_of_physical_memory();
+	map_peripherals_and_scheduler_stack();
 	set_translation_base_register_1(kernel_l1_page_table_begin);
 	enable_translation();
-	puth_with_title_64("Test TTBR1 Memory   = ", test_translation(0xFFFF000000000000));
-	puth_with_title_64("Test Kernel Code    = ", test_translation(0xFFFF0000000E0000));
-	puth_with_title_64("Test Invalid Access = ", test_translation(0xFFFFDDDDDDDDDDDD));
-	puth_with_title_64("Test Kernel Stack   = ", test_translation(0xFFFFFFFFFEFF0000));
-	puth_with_title_64("Test Kernel Stack   = ", test_translation(0xFFFFFFFFFEFFFFFF));
-	puth_with_title_64("Test Peripherals    = ", test_translation(0xFFFFFFFFFF000000));
-	puth_with_title_64("Test Peripherals    = ", test_translation(0xFFFFFFFFFFFFFFFF));
+	puth_with_title_64("Test TTBR1 Memory    = ", test_translation(0xFFFF000000000000));
+	puth_with_title_64("Test Kernel Code     = ", test_translation(0xFFFF0000000E0000));
+	puth_with_title_64("Test Invalid Access  = ", test_translation(0xFFFFDDDDDDDDDDDD));
+	puth_with_title_64("Test Scheduler Stack = ", test_translation(0xFFFFFFFFFEFF0000));
+	puth_with_title_64("Test Scheduler Stack = ", test_translation(0xFFFFFFFFFEFFFFFF));
+	puth_with_title_64("Test Peripherals     = ", test_translation(0xFFFFFFFFFF000000));
+	puth_with_title_64("Test Peripherals     = ", test_translation(0xFFFFFFFFFFFFFFFF));
 }

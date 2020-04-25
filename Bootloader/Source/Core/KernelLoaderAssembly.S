@@ -1,7 +1,7 @@
 .global launch_kernel
 launch_kernel:
-	// Initialize system control registers
-	ldr x0, =0xC00800
+	// Initialize system control registers for EL2
+	ldr x0, =0xC5183E
 	msr SCTLR_EL2, x0
 
 	// Mark EL1 execution state as AArch64
@@ -13,7 +13,7 @@ launch_kernel:
 	MOV X0, #0b00101
 	MSR SPSR_EL2, X0
 
-	// Set a stack pointer for EL1
+	// EL1 Stack Pointer is the Scheduler Stack
 	ldr x0, =0xFFFFFFFFFF000000
 	msr SP_EL1, x0
 
@@ -28,7 +28,7 @@ launch_kernel:
 	DSB SY
 
 	// Wait for all instructions
-	ISB
+	ISB SY
 
 	// Go to EL1
 	eret

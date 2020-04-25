@@ -9,7 +9,7 @@
 #include "FrameBuffer.h"
 #include "FrameBufferGraphics.h"
 #include "TrafficLights.h"
-#include "ThreadHandling.h"
+#include "Threading.h"
 #include "VirtualMemory.h"
 #include <stdint.h>
 
@@ -17,12 +17,10 @@
 extern uint64_t exception_level();
 
 // Implemented in ExceptionsAssembly.S
-extern void enable_irq();
+extern void irq_enable();
 
 // Implemented in VectorTable.S
 extern void set_vector_table();
-
-extern uint64_t get_stack_ptr();
 
 void main() {
 	// Normally we would setup UART here
@@ -30,10 +28,10 @@ void main() {
 	// the SerialClient or Bootloader
 	// already did it.
 
-	// TODO: This is a hack. Fix it!
+	// TODO: This is a hack. Fix this!
 	is_frame_buffer_ready = 0;
 
-	println("## Welcome to XyOS");
+	println("## Booting XyOS");
 
 	println("┣━ Configuring Vector Table");
 	set_vector_table();
@@ -62,7 +60,7 @@ void main() {
 	puti_32(mailbox_get_vc_memory_size() / (1024 * 1024));
 	println(" MB");
 
-	print("┗━ Current Exception Level : ");
+	print("┣━ Current Exception Level : ");
 	putc(exception_level() + '0');
 	newline();
 
@@ -70,15 +68,11 @@ void main() {
 		error("Unknown exception level");
 	}
 
-	newline();
-
-	println("## Welcome to EL1");
-
 	println("┣━ Initializing Traffic Lights");
 	traffic_lights_init();
 
 	println("┣━ Enabling IRQ");
-	enable_irq();
+	irq_enable();
 
 	println("┣━ Enabling ARM Timer");
 	arm_timer_enable();
@@ -95,12 +89,8 @@ void main() {
 	println("┣━ Initializing Frame Buffer");
 	frame_buffer_init(1024, 768);
 	frame_buffer_clear();
-	println("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-	println("0123456789!@#$%^&*()_-=+[]{}|\\;:'\",<.>/?`~");
 
-	newline();
-
-	main_menu();
+	thread_0();
 
 	error("We should never reach here");
 }

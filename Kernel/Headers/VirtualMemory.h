@@ -4,7 +4,6 @@
 #include <stdint.h>
 
 #define TOP_OF_MEMORY					0xFFFF000000000000
-#define LAST_PAGE_VADDR					0xFFFFFFFFFFFF0000
 #define PAGE_SIZE                       KB_64
 #define KB_64                           (64 * 1024)
 #define MB_512                          (512 * 1024 * 1024)

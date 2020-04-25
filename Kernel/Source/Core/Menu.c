@@ -1,7 +1,8 @@
 #include "ConsoleIO.h"
+#include "FrameBuffer.h"
 #include "FrameBufferGraphics.h"
 #include "Menu.h"
-#include "ThreadHandling.h"
+#include "Threading.h"
 
 void force_exception(){
 	println("Forcing unaligned data access...");
@@ -34,18 +35,39 @@ void typewriter_mode(){
 	}
 }
 
+void print_all_ascii_chars() {
+	char c = 0;
+	do {
+		putc(c);
+		c++;
+	} while(c != 0);
+	newline();
+}
+
+void test_stack_explode(uint64_t x, uint64_t y) {
+    test_stack_explode(++x, --y);
+}
+
 void main_menu_choice(char c){
 	switch(c) {
 		case 'x': {
-			frame_buffer_draw_cross(0xFFFFFF);
+			frame_buffer_draw_square_corner(0xFFFFFF);
 			break;
 		}
 		case 'e': {
-			get_edid_blocks();
+			force_exception();
 			break;
 		}
 		case 'c': {
 			frame_buffer_clear();
+			break;
+		}
+		case 'p': {
+			print_all_ascii_chars();
+			break;
+		}
+		case 'q': {
+			test_stack_explode(0, 0);
 			break;
 		}
 		case 't': {
@@ -59,6 +81,8 @@ void main_menu_choice(char c){
 }
 
 void main_menu() {
+	println("## Welcome to XyOS");
+	newline();
 	println("MAIN MENU");
 	while(1) {
 		// Wait for input!

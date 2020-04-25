@@ -1,12 +1,12 @@
 .section ".text"
 
-.global enable_irq
-enable_irq:
+.global irq_enable
+irq_enable:
 	msr DAIFClr, #15
 	ret
 
-.global disable_irq
-disable_irq:
+.global irq_disable
+irq_disable:
 	msr DAIFSet, #15
 	ret
 
@@ -52,6 +52,12 @@ exception_handler:
 	// H/W interrupt while this one is
 	// being dealt with.
 	msr DAIFSet, #15
+
+	// Wait for all data accesses
+	DSB SY
+
+	// Wait for all instructions
+	ISB SY
 
 	// Save all registers
 	sub sp, sp, #16
@@ -112,14 +118,18 @@ exception_handler:
 	ldr x1, =current_thread_saved_stack_pointer
 	str x0, [x1, 0]
 
-	// Set the stack to the end of some temp space
-	// The scheduler tries to figure out who runs
-	// next using this temp space
-	ldr x0, =0xFFFF000000010000
+	// Set stack to the scheduler stack
+	ldr x0, =0xFFFFFFFFFF000000
 	add sp, x0, #0
 
 	// Go to EL1 exception handler
 	bl exception_handler_1
+
+	// Wait for all data accesses
+	DSB SY
+
+	// Wait for all instructions
+	ISB SY
 
 	// Restore return address for the current thread
 	ldr x0, =current_thread_saved_program_counter
@@ -182,6 +192,12 @@ restore_registers:
 
 	// Re-enable H/W interrupts
 	msr DAIFClr, #15
+
+	// Wait for all data accesses
+	DSB SY
+
+	// Wait for all instructions
+	ISB SY
 
 	// Return from exception
 	// At this point, ELR_ELn

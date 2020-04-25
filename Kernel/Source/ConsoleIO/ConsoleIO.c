@@ -8,11 +8,7 @@
  * These are the methods that control I/O to FrameBuffer or UART
  */
 void putc(char c){
-    if (is_frame_buffer_ready) {
-        frame_buffer_putc(c, 0xFFFFFF);
-    } else {
-        uart_output(c);
-    }
+    uart_output(c);
 }
 
 char getc(){
@@ -178,6 +174,18 @@ void pretty_putb_32(uint32_t val) {
 	putb_64(val, 7, 4);
 	putc(' ');
 	putb_64(val, 3, 0);
+}
+
+void puti_with_title_32(char* title, uint32_t val) {
+    print(title);
+    puti_32(val);
+    newline();
+}
+
+void puti_with_title_64(char* title, uint64_t val) {
+    print(title);
+    puti_64(val);
+    newline();
 }
 
 void puth_with_title_32(char* title, uint32_t val) {

@@ -17,9 +17,9 @@
 #define AUX_MU_STAT_REG     ((volatile uint32_t*)(AUX_BASE + 0x64))
 #define AUX_MU_BAUD         ((volatile uint32_t*)(AUX_BASE + 0x68))
 
-void uart_setup();
-void uart_flush();
-void uart_output(uint32_t letter);
-uint32_t uart_input();
+volatile void uart_setup();
+volatile void uart_flush();
+volatile void uart_output(uint32_t letter);
+volatile uint32_t uart_input();
 
 #endif

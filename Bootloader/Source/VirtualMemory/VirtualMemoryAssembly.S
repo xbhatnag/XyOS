@@ -30,9 +30,10 @@ enable_translation:
 	msr MAIR_EL1, x0
 
 	// Set M bit (MMU)
+	// Enable SP alignment check
 	// Set C bit (data cacheability)
 	// Set I bit (instruction cacheability)
-	ldr x0, =0xC01805
+	ldr x0, =0xB
 	msr SCTLR_EL1, x0
 
 	// Clear the TLB
@@ -40,7 +41,7 @@ enable_translation:
 
 	// Synchronize on Data and Instruction
 	DSB SY
-	ISB
+	ISB SY
 
 	ret
 
