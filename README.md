@@ -2,7 +2,7 @@
 XyOS is a 64-Bit micro-kernel written in C and Assembly designed to run on the Raspberry Pi 3B.
 
 ## On Hold
-This project is on hold as I am on a study term.
+This project is on hold. I am unable to dedicate time to it currently.
 
 ## Goals
 - [X] Get something to boot reliably. Get familiar with AArch64 concepts.
